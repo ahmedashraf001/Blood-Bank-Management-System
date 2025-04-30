@@ -3,12 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.dataaccess\\services\\bloodtypeapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|solutionrelative:bloodtypess.dataaccess\\services\\bloodtypeapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|solutionrelative:bloodtypess.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3CA7950-056E-4D84-971C-491C2960641D}|BloodTypess.Core\\BloodTypess.Core.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.core\\configurations\\bloodtypeapioptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3CA7950-056E-4D84-971C-491C2960641D}|BloodTypess.Core\\BloodTypess.Core.csproj|solutionrelative:bloodtypess.core\\configurations\\bloodtypeapioptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.dataaccess\\interfaces\\ibloodtypeapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|solutionrelative:bloodtypess.dataaccess\\interfaces\\ibloodtypeapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3CA7950-056E-4D84-971C-491C2960641D}|BloodTypess.Core\\BloodTypess.Core.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.core\\dtos\\bloodtypeinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3CA7950-056E-4D84-971C-491C2960641D}|BloodTypess.Core\\BloodTypess.Core.csproj|solutionrelative:bloodtypess.core\\dtos\\bloodtypeinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|solutionrelative:bloodtypess.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.web\\extensions\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|solutionrelative:bloodtypess.web\\extensions\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.dataaccess\\services\\bloodtypeapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|solutionrelative:bloodtypess.dataaccess\\services\\bloodtypeapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3CA7950-056E-4D84-971C-491C2960641D}|BloodTypess.Core\\BloodTypess.Core.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.core\\bloodtypess.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C3CA7950-056E-4D84-971C-491C2960641D}|BloodTypess.Core\\BloodTypess.Core.csproj|solutionrelative:bloodtypess.core\\bloodtypess.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.dataaccess\\bloodtypesmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,14 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.web\\views\\bloodtypeinfo\\bloodinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|solutionrelative:bloodtypess.web\\views\\bloodtypeinfo\\bloodinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.dataaccess\\interfaces\\ibloodtypeapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|solutionrelative:bloodtypess.dataaccess\\interfaces\\ibloodtypeapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3CA7950-056E-4D84-971C-491C2960641D}|BloodTypess.Core\\BloodTypess.Core.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.core\\dtos\\bloodtypeinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3CA7950-056E-4D84-971C-491C2960641D}|BloodTypess.Core\\BloodTypess.Core.csproj|solutionrelative:bloodtypess.core\\dtos\\bloodtypeinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.web\\wwwroot\\images\\logo.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
@@ -87,10 +103,6 @@
       "RelativeMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|solutionrelative:bloodtypess.web\\bloodtypess.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C286FA58-69A6-44CA-B3EE-4B4A2D3A46A7}|BloodTypess.Web\\BloodTypess.Web.csproj|solutionrelative:bloodtypess.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|c:\\users\\ahmed ashraf\\desktop\\.net_tasks\\.netproject02\\bloodtypess\\bloodtypess.dataaccess\\bloodtypess.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{1BC2A0D2-40F6-45D4-8FEF-0C6E5AD3914A}|BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj|solutionrelative:bloodtypess.dataaccess\\bloodtypess.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -106,7 +118,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 268,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -123,71 +135,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BloodTypeApiService.cs",
-              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\Services\\BloodTypeApiService.cs",
-              "RelativeDocumentMoniker": "BloodTypess.DataAccess\\Services\\BloodTypeApiService.cs",
-              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\Services\\BloodTypeApiService.cs",
-              "RelativeToolTip": "BloodTypess.DataAccess\\Services\\BloodTypeApiService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Program.cs",
+              "RelativeDocumentMoniker": "BloodTypess.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Program.cs",
+              "RelativeToolTip": "BloodTypess.Web\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T17:32:38.304Z",
+              "WhenOpened": "2025-04-29T19:00:57.291Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "BloodTypesMap.cs",
-              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\BloodTypesMap.cs",
-              "RelativeDocumentMoniker": "BloodTypess.DataAccess\\BloodTypesMap.cs",
-              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\BloodTypesMap.cs",
-              "RelativeToolTip": "BloodTypess.DataAccess\\BloodTypesMap.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAOAAAAAAAAAA==",
+              "Title": "BloodTypeApiOptions.cs",
+              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Core\\Configurations\\BloodTypeApiOptions.cs",
+              "RelativeDocumentMoniker": "BloodTypess.Core\\Configurations\\BloodTypeApiOptions.cs",
+              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Core\\Configurations\\BloodTypeApiOptions.cs",
+              "RelativeToolTip": "BloodTypess.Core\\Configurations\\BloodTypeApiOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T21:18:08.324Z",
+              "WhenOpened": "2025-04-30T21:21:36.729Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "PredictBabyBloodType.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\BabyPrediction\\PredictBabyBloodType.cshtml",
-              "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\BabyPrediction\\PredictBabyBloodType.cshtml",
-              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\BabyPrediction\\PredictBabyBloodType.cshtml",
-              "RelativeToolTip": "BloodTypess.Web\\Views\\BabyPrediction\\PredictBabyBloodType.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-29T18:32:52.621Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BloodInfo.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\BloodTypeInfo\\BloodInfo.cshtml",
-              "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\BloodTypeInfo\\BloodInfo.cshtml",
-              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\BloodTypeInfo\\BloodInfo.cshtml",
-              "RelativeToolTip": "BloodTypess.Web\\Views\\BloodTypeInfo\\BloodInfo.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-29T18:32:20.804Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DependencyInjection.cs",
-              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Extensions\\DependencyInjection.cs",
-              "RelativeDocumentMoniker": "BloodTypess.Web\\Extensions\\DependencyInjection.cs",
-              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Extensions\\DependencyInjection.cs",
-              "RelativeToolTip": "BloodTypess.Web\\Extensions\\DependencyInjection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T18:57:49.909Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "IBloodTypeApiService.cs",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\Interfaces\\IBloodTypeApiService.cs",
               "RelativeDocumentMoniker": "BloodTypess.DataAccess\\Interfaces\\IBloodTypeApiService.cs",
@@ -200,7 +173,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "BloodTypess.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\appsettings.json",
+              "RelativeToolTip": "BloodTypess.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-30T21:20:17.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "BloodTypeInfoDTO.cs",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Core\\DTOs\\BloodTypeInfoDTO.cs",
               "RelativeDocumentMoniker": "BloodTypess.Core\\DTOs\\BloodTypeInfoDTO.cs",
@@ -213,7 +199,85 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BloodTypeApiService.cs",
+              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\Services\\BloodTypeApiService.cs",
+              "RelativeDocumentMoniker": "BloodTypess.DataAccess\\Services\\BloodTypeApiService.cs",
+              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\Services\\BloodTypeApiService.cs",
+              "RelativeToolTip": "BloodTypess.DataAccess\\Services\\BloodTypeApiService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAqwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T17:32:38.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Extensions\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "BloodTypess.Web\\Extensions\\DependencyInjection.cs",
+              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Extensions\\DependencyInjection.cs",
+              "RelativeToolTip": "BloodTypess.Web\\Extensions\\DependencyInjection.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBIAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T18:57:49.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PredictBabyBloodType.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\BabyPrediction\\PredictBabyBloodType.cshtml",
+              "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\BabyPrediction\\PredictBabyBloodType.cshtml",
+              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\BabyPrediction\\PredictBabyBloodType.cshtml",
+              "RelativeToolTip": "BloodTypess.Web\\Views\\BabyPrediction\\PredictBabyBloodType.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-29T18:32:52.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BloodInfo.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\BloodTypeInfo\\BloodInfo.cshtml",
+              "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\BloodTypeInfo\\BloodInfo.cshtml",
+              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\BloodTypeInfo\\BloodInfo.cshtml",
+              "RelativeToolTip": "BloodTypess.Web\\Views\\BloodTypeInfo\\BloodInfo.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-29T18:32:20.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "BloodTypess.Core",
+              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Core\\BloodTypess.Core.csproj",
+              "RelativeDocumentMoniker": "BloodTypess.Core\\BloodTypess.Core.csproj",
+              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Core\\BloodTypess.Core.csproj",
+              "RelativeToolTip": "BloodTypess.Core\\BloodTypess.Core.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-30T21:21:26.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BloodTypesMap.cs",
+              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\BloodTypesMap.cs",
+              "RelativeDocumentMoniker": "BloodTypess.DataAccess\\BloodTypesMap.cs",
+              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\BloodTypesMap.cs",
+              "RelativeToolTip": "BloodTypess.DataAccess\\BloodTypesMap.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwA8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T21:18:08.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "logo.png - PNG [944x264, 32 bit, PNG]",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\wwwroot\\images\\logo.png",
               "RelativeDocumentMoniker": "BloodTypess.Web\\wwwroot\\images\\logo.png",
@@ -225,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "BloodTypeInfoController.cs",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Controllers\\BloodTypeInfoController.cs",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Controllers\\BloodTypeInfoController.cs",
@@ -238,7 +302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Models\\ErrorViewModel.cs",
@@ -251,7 +315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "BabyPredictionController.cs",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Controllers\\BabyPredictionController.cs",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Controllers\\BabyPredictionController.cs",
@@ -264,7 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\Shared\\_Layout.cshtml",
@@ -277,7 +341,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\_ViewImports.cshtml",
@@ -290,7 +354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -303,7 +367,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "Error.cshtml",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\Shared\\Error.cshtml",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\Shared\\Error.cshtml",
@@ -316,20 +380,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "BloodTypess.Web\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwBcAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-29T18:29:52.426Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Views\\Home\\Privacy.cshtml",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Views\\Home\\Privacy.cshtml",
@@ -342,7 +406,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "BloodTypess.Web\\Controllers\\HomeController.cs",
@@ -355,7 +419,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "BloodTypeService.cs",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Business\\Services\\BloodTypeService.cs",
               "RelativeDocumentMoniker": "BloodTypess.Business\\Services\\BloodTypeService.cs",
@@ -368,7 +432,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 23,
               "Title": "IBloodTypeService.cs",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Business\\Interfaces\\IBloodTypeService.cs",
               "RelativeDocumentMoniker": "BloodTypess.Business\\Interfaces\\IBloodTypeService.cs",
@@ -381,7 +445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 24,
               "Title": "BloodTypess.Web.csproj",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\BloodTypess.Web.csproj",
               "RelativeDocumentMoniker": "BloodTypess.Web\\BloodTypess.Web.csproj",
@@ -389,24 +453,12 @@
               "RelativeToolTip": "BloodTypess.Web\\BloodTypess.Web.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-29T21:27:09.178Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Program.cs",
-              "RelativeDocumentMoniker": "BloodTypess.Web\\Program.cs",
-              "ToolTip": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Web\\Program.cs",
-              "RelativeToolTip": "BloodTypess.Web\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T19:00:57.291Z",
+              "WhenOpened": "2025-04-29T21:27:09.178Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "BloodTypess.DataAccess.csproj",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj",
               "RelativeDocumentMoniker": "BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj",
@@ -414,11 +466,12 @@
               "RelativeToolTip": "BloodTypess.DataAccess\\BloodTypess.DataAccess.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-29T17:32:31.563Z"
+              "WhenOpened": "2025-04-29T17:32:31.563Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "BloodTypess.Business.csproj",
               "DocumentMoniker": "C:\\Users\\Ahmed ashraf\\Desktop\\.Net_Tasks\\.NetProject02\\BloodTypess\\BloodTypess.Business\\BloodTypess.Business.csproj",
               "RelativeDocumentMoniker": "BloodTypess.Business\\BloodTypess.Business.csproj",
@@ -426,7 +479,8 @@
               "RelativeToolTip": "BloodTypess.Business\\BloodTypess.Business.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-29T17:29:05.686Z"
+              "WhenOpened": "2025-04-29T17:29:05.686Z",
+              "EditorCaption": ""
             }
           ]
         },

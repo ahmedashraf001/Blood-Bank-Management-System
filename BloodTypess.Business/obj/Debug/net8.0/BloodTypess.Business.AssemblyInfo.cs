@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BloodTypess.Business")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3d6aaaa7a7daacd56030fec7289224ed0d68c750")]
 [assembly: System.Reflection.AssemblyProductAttribute("BloodTypess.Business")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BloodTypess.Business")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

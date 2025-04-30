@@ -8,6 +8,10 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using BloodTypess.DataAccess;
+using BloodTypess.Core.Configurations;
+using Microsoft.Extensions.Options;
+
+
 namespace BloodTypess.DataAccess.Services
 {
 
@@ -16,10 +20,12 @@ namespace BloodTypess.DataAccess.Services
 		
 
 		private HttpClient _httpClient;
-
-		public BloodTypeApiService(HttpClient httpClient)
+		private string _baseUrl;
+ 
+		public BloodTypeApiService(HttpClient httpClient , IOptions<BloodTypeApiOptions> BloodTypeApioptions)
 		{
 			_httpClient = httpClient;
+			_baseUrl = BloodTypeApioptions.Value.BaseUrl;
 		}
 
 		 
@@ -27,8 +33,8 @@ namespace BloodTypess.DataAccess.Services
 
 		public Task<BloodTypeInfoDTO> GetBloodTypeInfoAsync(string bloodType)
 		{
-
-			var response = _httpClient.GetFromJsonAsync<BloodTypeInfoDTO>($"https://68103ecf27f2fdac2410ad0f.mockapi.io/blood/bloodtypes/{BloodTypesMap.mp[bloodType]}");
+			var url = $"{_baseUrl}{BloodTypesMap.mp[bloodType]}";
+			var response = _httpClient.GetFromJsonAsync<BloodTypeInfoDTO>(url);
 			return response;
 
 		}
