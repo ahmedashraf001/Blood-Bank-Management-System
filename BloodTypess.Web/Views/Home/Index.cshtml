@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@* 
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> *@
+<div class="fade-in-text">Welcome!<br> Know more about BloodTypes...</div>
+
+@section Styles{
+    <style> 
+        body{
+            margin: 0 !important;
+            boarder:none !important;
+            min-height: 100vh;
+            background-image: url('/images/homebg.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 0;
+        }
+        .fade-in-text{
+            color:white;
+            font-weight: bold;
+            font-size: 7rem;  
+            opacity: 0; /* Start invisible */
+            animation: fadeIn 2s forwards;  
+        }
+        
+
+         
+
+
+    </style>}

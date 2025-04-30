@@ -1,0 +1,216 @@
+﻿@{
+    ViewData["Title"] = "Blood Type Compatibility Predictor";
+    Layout = "_Layout";
+}
+@using System.Collections.Generic;
+
+<div class="container">
+    <h1> Blood Type Compatibility Predictor.</h1>
+    <h3> see how blood type passed on genetically.</h3>
+
+
+    <div style="text-align:center;" class="compatibility-calculator">
+        <div class="blood-selector">
+            <div class="button-group" id="donor-buttons">
+                <button class="blood-button active" data-type="A">A</button>
+                <button class="blood-button" data-type="B">B</button>
+                <button class="blood-button" data-type="O">O</button>
+                <button class="blood-button" data-type="AB">AB</button>
+            </div>
+            <label><h2>Father</h2></label>
+            <div class="selected-blood" id="selected-donor">A</div>
+        </div>
+
+        <div class="operator">+</div>
+
+        <div class="blood-selector">
+            <div class="button-group" id="recipient-buttons">
+                <button class="blood-button active" data-type="A">A</button>
+                <button class="blood-button" data-type="B">B</button>
+                <button class="blood-button" data-type="O">O</button>
+                <button class="blood-button" data-type="AB">AB</button>
+            </div>
+            <label style="text-align:center;" ><h2 >Mother</h2></label>
+            <div class="selected-blood" id="selected-recipient">A</div>
+        </div>
+    </div>
+
+    <div class="results">
+        <h2 style="text-align:center;">
+            Possible blood type of child
+        </h2>
+        <div style="text-align:center;" class="compatibility-result" id="compatibility-result"></div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .blood-selector {
+            flex: 1;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .blood-button {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            background-color: white;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+            .blood-button:hover {
+                border-color: #bbb;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .blood-button.active {
+                background-color: #3498db;
+                color: white;
+                border-color: #2980b9;
+                box-shadow: 0 3px 6px rgba(52, 152, 219, 0.3);
+            }
+
+        .selected-blood {
+            height: 240px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            background-image: url(https://salmon-laurette-64.tiiny.site/parent.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;  
+        }
+
+        .operator {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #7f8c8d;
+            padding: 0 1rem;
+        }
+
+        .compatibility-calculator {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .results {
+            margin-top: 2rem;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+            .results h2 {
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+                color: #2c3e50;
+                
+            }
+
+        .compatibility-result {
+            font-size: 2rem;
+            line-height: 4.5;
+            background-image: url(https://fuchsia-merrily-41.tiiny.site/child.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            font-weight: bold;
+            text-align : center;
+            
+        }
+        label{
+
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Blood type compatibility data
+            const compatibilityData = @Html.Raw(Json.Serialize(ViewBag.CompatibilityData ?? new Dictionary<string, string[]>
+            {
+            { "A+A", new[] { "A", "O" } },
+            { "A+B", new[] { "A", "B", "O", "AB" } },
+            { "A+O", new[] { "O" } },
+            { "A+AB", new[] { "A", "B", "O", "AB" } },
+            { "B+A", new[] { "A", "B", "O", "AB" } },
+            { "B+B", new[] { "B", "O" } },
+            { "B+O", new[] { "O" } },
+            { "B+AB", new[] { "A", "B", "O", "AB" } },
+            { "O+A", new[] { "A", "O" } },
+            { "O+B", new[] { "B", "O" } },
+            { "O+O", new[] { "O" } },
+            { "O+AB", new[] { "A", "B", "O", "AB" } },
+            { "AB+A", new[] { "A", "AB" } },
+            { "AB+B", new[] { "B", "AB" } },
+            { "AB+O", new[] { "A", "B", "O", "AB" } },
+            { "AB+AB", new[] { "AB" } }
+            }));
+
+            const donorButtons = document.querySelectorAll('#donor-buttons .blood-button');
+            const recipientButtons = document.querySelectorAll('#recipient-buttons .blood-button');
+            const selectedDonor = document.getElementById('selected-donor');
+            const selectedRecipient = document.getElementById('selected-recipient');
+            const compatibilityResult = document.getElementById('compatibility-result');
+
+            // Function to handle button selection
+            function handleButtonSelection(buttons, selectedDisplay) {
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Remove active class from all buttons
+                        buttons.forEach(btn => btn.classList.remove('active'));
+
+                        // Add active class to clicked button
+                        button.classList.add('active');
+
+                        // Update selected blood type display
+                        selectedDisplay.textContent = button.dataset.type;
+
+                        // Update compatibility result
+                        updateCompatibilityResult();
+                    });
+                });
+            }
+
+            // Function to update compatibility result
+            function updateCompatibilityResult() {
+                const donorType = selectedDonor.textContent;
+                const recipientType = selectedRecipient.textContent;
+                const key = `${donorType}+${recipientType}`;
+
+                const compatibleTypes = compatibilityData[key];
+
+                if (compatibleTypes) {
+                    compatibilityResult.textContent = compatibleTypes.join(', ');
+                } else {
+                    compatibilityResult.textContent = 'No compatibility data available.';
+                }
+            }
+
+            // Initialize button selection handlers
+            handleButtonSelection(donorButtons, selectedDonor);
+            handleButtonSelection(recipientButtons, selectedRecipient);
+
+            // Initial compatibility result
+            updateCompatibilityResult();
+        });
+    </script>
+}

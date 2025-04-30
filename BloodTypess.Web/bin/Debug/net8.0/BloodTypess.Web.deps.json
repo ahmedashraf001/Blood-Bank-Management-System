@@ -1,0 +1,71 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "BloodTypess.Web/1.0.0": {
+        "dependencies": {
+          "BloodTypess.Business": "1.0.0"
+        },
+        "runtime": {
+          "BloodTypess.Web.dll": {}
+        }
+      },
+      "BloodTypess.Business/1.0.0": {
+        "dependencies": {
+          "BloodTypess.DataAccess": "1.0.0"
+        },
+        "runtime": {
+          "BloodTypess.Business.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "BloodTypess.Core/1.0.0": {
+        "runtime": {
+          "BloodTypess.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "BloodTypess.DataAccess/1.0.0": {
+        "dependencies": {
+          "BloodTypess.Core": "1.0.0"
+        },
+        "runtime": {
+          "BloodTypess.DataAccess.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BloodTypess.Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BloodTypess.Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BloodTypess.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BloodTypess.DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Blood Type";
+}
+
+<h2 >Find your blood type information</h2>
+
+<form asp-controller="BloodTypeInfo" asp-action="BloodInfo" method="get"  >
+    <label>Enter your Blood Type: </label>
+    <input   type="text" name="bloodtype" placeholder="example: A+" />
+    <button type="submit">Search</button>
+</form>
+
+@if (ViewData["ErrorMessage"] != null && ViewContext.HttpContext.Request.Query.ContainsKey("bloodtype"))
+{
+    <div class="alert alert-danger">
+        @ViewData["ErrorMessage"]
+    </div>
+}
+
+
+@if (Model != null)
+{
+    <div>
+        <h3>Results :</h3> <br>
+        <p><strong>Blood Type: </strong> @Model.BloodType</p>
+        <p><strong>Can Donnate To: </strong> @string.Join(", ", Model.CanDonateTo)</p>
+        <p><strong>Can Recieve From: </strong> @string.Join(", ", Model.CanReceiveFrom)</p>
+        <p><strong>PrevalenceGlobal: </strong> @Model.PrevalenceGlobal</p>
+
+    </div>
+}
+
+ 
