@@ -1,6 +1,8 @@
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\bin\Debug\net8.0\BloodTypess.Core.deps.json
+C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\bin\Debug\net8.0\BloodTypess.Core.runtimeconfig.json
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\bin\Debug\net8.0\BloodTypess.Core.dll
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\bin\Debug\net8.0\BloodTypess.Core.pdb
+C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\obj\Debug\net8.0\BloodTypess.Core.csproj.AssemblyReference.cache
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\obj\Debug\net8.0\BloodTypess.Core.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\obj\Debug\net8.0\BloodTypess.Core.AssemblyInfoInputs.cache
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\obj\Debug\net8.0\BloodTypess.Core.AssemblyInfo.cs
@@ -8,4 +10,5 @@ C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.C
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\obj\Debug\net8.0\BloodTypess.Core.dll
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\obj\Debug\net8.0\refint\BloodTypess.Core.dll
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\obj\Debug\net8.0\BloodTypess.Core.pdb
+C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\obj\Debug\net8.0\BloodTypess.Core.genruntimeconfig.cache
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.Core\obj\Debug\net8.0\ref\BloodTypess.Core.dll

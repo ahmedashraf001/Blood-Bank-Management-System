@@ -1,4 +1,5 @@
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\bin\Debug\net8.0\BloodTypess.DataAccess.deps.json
+C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\bin\Debug\net8.0\BloodTypess.DataAccess.runtimeconfig.json
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\bin\Debug\net8.0\BloodTypess.DataAccess.dll
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\bin\Debug\net8.0\BloodTypess.DataAccess.pdb
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\bin\Debug\net8.0\BloodTypess.Core.dll
@@ -12,4 +13,5 @@ C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.D
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\obj\Debug\net8.0\BloodTypess.DataAccess.dll
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\obj\Debug\net8.0\refint\BloodTypess.DataAccess.dll
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\obj\Debug\net8.0\BloodTypess.DataAccess.pdb
+C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\obj\Debug\net8.0\BloodTypess.DataAccess.genruntimeconfig.cache
 C:\Users\Ahmed ashraf\Desktop\.Net_Tasks\.NetProject02\BloodTypess\BloodTypess.DataAccess\obj\Debug\net8.0\ref\BloodTypess.DataAccess.dll

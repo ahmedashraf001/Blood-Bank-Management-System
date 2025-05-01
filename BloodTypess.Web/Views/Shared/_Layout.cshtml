@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authorization
+@{
+    var firstName = User.Claims.FirstOrDefault(c => c.Type == "FirstName")?.Value;
+    var lastName = User.Claims.FirstOrDefault(c => c.Type == "LastName")?.Value;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,24 +15,78 @@
     <link rel="stylesheet" href="~/BloodTypess.Web.styles.css" asp-append-version="true" />
     @RenderSection("Styles", required: false)
     <style>
-        .custom{
+        .custom {
             background-color: #5B2638 !important;
             border-bottom: none !important;
-             position: fixed;
+            position: fixed;
             top: 0;
-             width:100%;
+            width: 100%;
             height: 60px;
-            z-index: 1000;  
-         
+            z-index: 1000;
         }
-         body{
-            padding-top: 60px;
-         }
 
-         
+        body {
+            padding-top: 60px;
+        }
+
+        .auth-links {
+            margin-left: auto;
+        }
+
+            .auth-links .nav-link,
+            .auth-links .btn-link {
+                color: white !important;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+            .auth-links form {
+                display: inline;
+            }
+
+        /* Welcome message styling */
+        .welcome-message {
+            color: white;
+            font-weight: bold;
+            padding: 12px 15px;
+            margin-right: 10px;
+            line-height: 1.2;
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        /* Optional: Make sure nav links are aligned properly */
+        .navbar-nav .nav-link,
+        .auth-links .btn-link {
+            padding: 12px 15px;
+            line-height: 1.2;
+        }
+
+        .welcome-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white !important;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1001;
+ 
+          
+        }
+        
     </style>
 </head>
 <body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div id="welcomeAnimation" class="welcome-animation">
+            Welcome @firstName @lastName!
+        </div>
+    }
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 custom">
             <div class="container-fluid">
@@ -44,6 +104,30 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="BabyPrediction" asp-action="PredictBabyBloodType" style="color:white !important; font-weight:bold;">BloodType Baby Predictor</a>
                         </li>
                     </ul>
+
+                    <!-- Auth links moved to navbar -->
+                    <ul class="navbar-nav auth-links">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <span id="permanentWelcome" class="welcome-message">Welcome, @firstName!</span>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="Logout" method="post">
+                                    <button type="submit" class="btn btn-link nav-link">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -53,15 +137,66 @@
             @RenderBody()
         </main>
     </div>
-
-@*     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - BloodType App -  
-        </div>
-    </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- JavaScript for welcome animation -->
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script>
+            $(document).ready(function () {
+                // Only show welcome animation on first login
+                if (!sessionStorage.getItem('welcomeShown')) {
+                    const $welcome = $('#permanentWelcome');
+                    const welcomeText = "Welcome, @firstName!";
+                    $welcome.text(''); // Clear initial text
+
+                    // Start animation
+                    let i = 0;
+                    function typeWriter() {
+                        if (i < welcomeText.length) {
+                            $welcome.text($welcome.text() + welcomeText.charAt(i));
+                            i++;
+                            setTimeout(typeWriter, 100); // Typing speed
+                        }
+                    }
+
+                    // Begin typing animation
+                    typeWriter();
+
+                    // Set session storage to prevent replay
+                    sessionStorage.setItem('welcomeShown', 'true');
+                }
+            });
+
+            $(document).ready(function () {
+                // Only show welcome animation on first login
+                if (!sessionStorage.getItem('welcomeAnimation')) {
+                    const $welcomee = $('#welcomeAnimation');
+                    const welcomeeText = "Welcome, @firstName @lastName!";
+                    $welcomee.text('').show(); // Show the div & Clear initial text
+
+                    // Start animation
+                    let i = 0;
+                    function typeWriterr() {
+                        if (i < welcomeeText.length) {
+                            $welcomee.text($welcomee.text() + welcomeeText.charAt(i));
+                            i++;
+                            setTimeout(typeWriterr, 100); // Typing speed
+                        }
+                    }
+
+                    // Begin typing animation
+                    typeWriterr();
+
+                    // Set session storage to prevent replay
+                    sessionStorage.setItem('welcomeAnimation', 'true');
+                }
+            });
+        </script>
+    }
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

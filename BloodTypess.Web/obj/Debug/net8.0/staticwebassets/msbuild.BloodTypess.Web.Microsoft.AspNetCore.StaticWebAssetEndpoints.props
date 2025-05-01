@@ -4,13 +4,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BloodTypess.Web.7reytn3v7z.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"7reytn3v7z"},{"Name":"integrity","Value":"sha256-M2het\u002BAADaUNTEDIwHDkPGa7G6zufP32CiJy4r5B2GQ="},{"Name":"label","Value":"_content/BloodTypess.Web/BloodTypess.Web.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1133"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022M2het\u002BAADaUNTEDIwHDkPGa7G6zufP32CiJy4r5B2GQ=\u0022"},{"Name":"Last-Modified","Value":"Tue, 29 Apr 2025 18:40:04 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1133"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022M2het\u002BAADaUNTEDIwHDkPGa7G6zufP32CiJy4r5B2GQ=\u0022"},{"Name":"Last-Modified","Value":"Thu, 01 May 2025 07:11:59 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BloodTypess.Web/BloodTypess.Web.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BloodTypess.Web.7reytn3v7z.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-M2het\u002BAADaUNTEDIwHDkPGa7G6zufP32CiJy4r5B2GQ="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1133"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022M2het\u002BAADaUNTEDIwHDkPGa7G6zufP32CiJy4r5B2GQ=\u0022"},{"Name":"Last-Modified","Value":"Tue, 29 Apr 2025 18:40:04 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1133"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022M2het\u002BAADaUNTEDIwHDkPGa7G6zufP32CiJy4r5B2GQ=\u0022"},{"Name":"Last-Modified","Value":"Thu, 01 May 2025 07:11:59 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BloodTypess.Web/css/site.c2tiyv64ts.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>

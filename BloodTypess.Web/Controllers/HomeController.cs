@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using BloodTypess.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BloodTypess.Web.Controllers
@@ -12,10 +13,15 @@ namespace BloodTypess.Web.Controllers
         {
             _logger = logger;
         }
+		public IActionResult AccessDenied()
+		{
+			return View(); // show a "AccessDenied" page
+		}
 
-        public IActionResult Index()
+        [AllowAnonymous]
+		public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         public IActionResult Privacy()
