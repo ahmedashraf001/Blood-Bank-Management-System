@@ -9,7 +9,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BloodTypess.Web</title>
+    <title>@ViewData["Title"] - Blood Bank Management System</title>
+    <link rel="icon" type="image/png" href="/images/Logo00.png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BloodTypess.Web.styles.css" asp-append-version="true" />
@@ -56,37 +57,70 @@
             white-space: nowrap;
         }
 
-        /* Optional: Make sure nav links are aligned properly */
+        /* ensure nav links are aligned properly */
         .navbar-nav .nav-link,
         .auth-links .btn-link {
             padding: 12px 15px;
             line-height: 1.2;
         }
-
-        .welcome-animation {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            color: white !important;
-            font-weight: bold;
-            text-align: center;
-            z-index: 1001;
- 
-          
+        
+        /* Dropdown styling */
+        .dropdown-menu {
+            background-color: #5B2638;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 0;
         }
         
+        .dropdown-item {
+            color: white !important;
+            font-weight: 500;
+            padding: 8px 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover, .dropdown-item:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white !important;
+        }
+        
+        .dropdown-toggle::after {
+            vertical-align: middle;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Make dropdown work better on mobile */
+        @@media (max-width: 576px) {
+            .dropdown-menu {
+                position: static;
+                float: none;
+                width: 100%;
+                margin-top: 0;
+                background-color: rgba(91, 38, 56, 0.8);
+                border: none;
+                box-shadow: none;
+            }
+            
+            .navbar-collapse {
+                background-color: #5B2638;
+                padding: 10px;
+                border-radius: 0 0 8px 8px;
+            }
+        }
     </style>
 </head>
 <body>
-    @if (User.Identity.IsAuthenticated)
-    {
-        <div id="welcomeAnimation" class="welcome-animation">
-            Welcome @firstName @lastName!
-        </div>
-    }
-
+  
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 custom">
             <div class="container-fluid">
@@ -102,6 +136,28 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="BabyPrediction" asp-action="PredictBabyBloodType" style="color:white !important; font-weight:bold;">BloodType Baby Predictor</a>
+                        </li>
+                        
+                        <!-- Donors Dropdown Menu -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="donorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white !important; font-weight:bold;">
+                                Donors
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="donorsDropdown">
+                                <li><a class="dropdown-item" asp-controller="Donor" asp-action="Index">View Donors</a></li>
+                                <li><a class="dropdown-item" asp-controller="Donor" asp-action="Create">Add Donor</a></li>
+                            </ul>
+                        </li>
+                        
+                        <!-- BloodType Stock Dropdown Menu -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="stockDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white !important; font-weight:bold;">
+                                BloodType Stock
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="stockDropdown">
+                                <li><a class="dropdown-item" asp-controller="BloodTypeStock" asp-action="Index">View Stock</a></li>
+                                <li><a class="dropdown-item" asp-controller="BloodTypeStock" asp-action="Create">Add Stock</a></li>
+                            </ul>
                         </li>
                     </ul>
 
@@ -141,7 +197,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <!-- JavaScript for welcome animation -->
+    <!-- JavaScript for welcome txt -->
     @if (User.Identity.IsAuthenticated)
     {
         <script>
@@ -169,29 +225,23 @@
                     sessionStorage.setItem('welcomeShown', 'true');
                 }
             });
-
-            $(document).ready(function () {
-                // Only show welcome animation on first login
-                if (!sessionStorage.getItem('welcomeAnimation')) {
-                    const $welcomee = $('#welcomeAnimation');
-                    const welcomeeText = "Welcome, @firstName @lastName!";
-                    $welcomee.text('').show(); // Show the div & Clear initial text
-
-                    // Start animation
-                    let i = 0;
-                    function typeWriterr() {
-                        if (i < welcomeeText.length) {
-                            $welcomee.text($welcomee.text() + welcomeeText.charAt(i));
-                            i++;
-                            setTimeout(typeWriterr, 100); // Typing speed
+            
+            // Enhance dropdown behavior on hover for desktop
+            $(document).ready(function() {
+                const $dropdown = $(".dropdown");
+                const $dropdownToggle = $(".dropdown-toggle");
+                const $dropdownMenu = $(".dropdown-menu");
+                
+                // Add hover functionality for desktop only
+                if (window.matchMedia("(min-width: 768px)").matches) {
+                    $dropdown.hover(
+                        function() {
+                            $(this).find($dropdownMenu).stop(true, true).fadeIn(300);
+                        },
+                        function() {
+                            $(this).find($dropdownMenu).stop(true, true).fadeOut(300);
                         }
-                    }
-
-                    // Begin typing animation
-                    typeWriterr();
-
-                    // Set session storage to prevent replay
-                    sessionStorage.setItem('welcomeAnimation', 'true');
+                    );
                 }
             });
         </script>

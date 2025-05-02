@@ -1,0 +1,109 @@
+﻿@model IEnumerable<BloodTypess.Core.DTOs.BloodTypeStockDto>
+
+@{
+    ViewData["Title"] = "Blood Stock Inventory";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">
+                <i class="bi bi-droplet-fill me-2"></i>Blood Stock Inventory
+            </h4>
+            <a asp-action="Create" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Add New Blood Type
+            </a>
+        </div>
+        <div class="card-body">
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info" role="alert">
+                    <i class="bi bi-info-circle"></i> No blood type records found. Add a new blood type to get started.
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Blood Type</th>
+                                <th>Available Units</th>
+                                <th>Last Updated</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <span class="badge bg-danger p-2">@item.Type</span>
+                                    </td>
+                                    <td>
+                                        @if (item.AvailableUnits < 5)
+                                        {
+                                            <span class="text-danger fw-bold">@item.AvailableUnits</span>
+                                            <i class="bi bi-exclamation-triangle-fill text-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Low stock!"></i>
+                                        }
+                                        else if (item.AvailableUnits < 20)
+                                        {
+                                            <span class="text-warning fw-bold">@item.AvailableUnits</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-success fw-bold">@item.AvailableUnits</span>
+                                        }
+                                    </td>
+                                    <td>@item.LastUpdated.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">
+                                                <i class="bi bi-pencil-square"></i> Edit
+                                            </a>
+                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-@item.Id">
+                                                <i class="bi bi-trash"></i> Delete
+                                            </button>
+                                        </div>
+
+                                        <!-- Delete Confirmation Modal -->
+                                        <div class="modal fade" id="deleteModal-@item.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@item.Id" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-danger text-white">
+                                                        <h5 class="modal-title" id="deleteModalLabel-@item.Id">Confirm Delete</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete blood type <strong>@item.Type</strong> with <strong>@item.AvailableUnits</strong> available units?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Enable tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    </script>
+}

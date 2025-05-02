@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
  using Microsoft.Extensions.DependencyInjection;
 using BloodTypess.Core.Models;
 using System;
+using BloodTypess.DataAccess.Repositories;
 
 namespace BloodTypess.Web.Extensions
 {
@@ -25,11 +26,20 @@ namespace BloodTypess.Web.Extensions
 		public static void RegisterServices(this IServiceCollection services , IConfiguration configuration )
 		{
 			services.AddHttpClient();
-			services.AddScoped<IBloodTypeService, BloodTypeService>();
-			services.AddTransient<IPasswordHasher, PasswordHasher>();
-			services.AddScoped<IUserService, UserService>();
- 			 
 
+			//Register Services
+			services.AddScoped<IBloodTypeService, BloodTypeService>();
+			services.AddScoped<IUserService, UserService>();
+			services.AddScoped<IBloodTypeStockService, BloodTypeStockService>();
+			services.AddScoped<IDonorService, DonorService>();
+
+			//Register Repositories
+			services.AddScoped<IBloodTypeStockRepository, BloodTypeStockRepository>();
+			services.AddScoped<IDonorRepository, DonorRepository>();
+			services.AddScoped<IBloodTypeRepository, BloodTypeRepository>();
+
+
+ 
 
 
 			services.AddScoped<IBloodTypeApiService, BloodTypeApiService>();
@@ -41,7 +51,7 @@ namespace BloodTypess.Web.Extensions
 
 
 
-			// registiration for ApplicationDbContext as Scopped 
+			// Add DbContext
 			services.AddDbContext<ApplicationDbContext>(cfg => cfg.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]));
 
 			services.AddIdentity<AppUser , IdentityRole>(options => {
@@ -67,39 +77,7 @@ namespace BloodTypess.Web.Extensions
 
 
 
-			//// Add ASP.NET Core Identity
-			//// this sets up the full Identity system with user/role support, EF Core storage, and token generation.
-			//services.AddIdentity<IdentityUser, IdentityRole>()
-			//	.AddEntityFrameworkStores<ApplicationDbContext>()
-			//	.AddDefaultTokenProviders();
-
-			//// Configure Identity options
-			//services.Configure<IdentityOptions>(options =>
-			//{
-			//	options.Password.RequireDigit = true;
-			//	options.Password.RequireLowercase = true;
-			//	options.Password.RequireUppercase = true;
-			//	options.Password.RequireNonAlphanumeric = false;
-			//	options.Password.RequiredLength = 6;
-			//});
-
-
-			//// Configure cookie-based authentication
-			//services.ConfigureApplicationCookie(options =>
-			//{
-			//	options.LoginPath = "/Account/Login";  // Redirect to login page if not authenticated
-			//	options.AccessDeniedPath = "/Account/AccessDenied";  // Redirect if not authorized
-			//});
-
-
-
-			//// configure identity for AppUser Model
-			//services.AddIdentity<AppUser, IdentityRole>()
-			//		.AddEntityFrameworkStores<ApplicationDbContext>()
-			//		.AddDefaultTokenProviders();
-
-
-
+	 
 
 
 
@@ -117,8 +95,7 @@ namespace BloodTypess.Web.Extensions
 			});
 			
 
-			//services.AddMvc();
-
+ 
 
 		}
 	}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BloodTypess.Core.Models
 {
-	internal class UserRole
+	public class UserRole
 	{
 
 	}

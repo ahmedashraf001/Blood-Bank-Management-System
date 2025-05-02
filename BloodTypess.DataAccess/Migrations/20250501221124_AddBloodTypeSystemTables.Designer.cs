@@ -4,6 +4,7 @@ using BloodTypess.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BloodTypess.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250501221124_AddBloodTypeSystemTables")]
+    partial class AddBloodTypeSystemTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,65 +100,6 @@ namespace BloodTypess.DataAccess.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("BloodTypess.Core.Models.BloodType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BloodTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Type = "A+"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Type = "A-"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Type = "B+"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Type = "B-"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Type = "AB+"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Type = "AB-"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Type = "O+"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Type = "O-"
-                        });
-                });
-
             modelBuilder.Entity("BloodTypess.Core.Models.BloodTypeStock", b =>
                 {
                     b.Property<int>("Id")
@@ -167,9 +111,6 @@ namespace BloodTypess.DataAccess.Migrations
                     b.Property<int>("AvailableUnits")
                         .HasColumnType("int");
 
-                    b.Property<int>("BloodTypeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("datetime2");
 
@@ -178,9 +119,6 @@ namespace BloodTypess.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BloodTypeId")
-                        .IsUnique();
 
                     b.ToTable("BloodTypesStock");
                 });
@@ -199,9 +137,6 @@ namespace BloodTypess.DataAccess.Migrations
 
                     b.Property<int>("BloodTypeId")
                         .HasColumnType("int");
-
-                    b.Property<string>("BloodTypeName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -378,26 +313,15 @@ namespace BloodTypess.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BloodTypess.Core.Models.BloodTypeStock", b =>
-                {
-                    b.HasOne("BloodTypess.Core.Models.BloodType", "BloodType")
-                        .WithOne("BloodTypeStock")
-                        .HasForeignKey("BloodTypess.Core.Models.BloodTypeStock", "BloodTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BloodType");
-                });
-
             modelBuilder.Entity("BloodTypess.Core.Models.Donor", b =>
                 {
-                    b.HasOne("BloodTypess.Core.Models.BloodType", "bloodType")
-                        .WithMany("Donors")
+                    b.HasOne("BloodTypess.Core.Models.BloodTypeStock", "BloodType")
+                        .WithMany()
                         .HasForeignKey("BloodTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("bloodType");
+                    b.Navigation("BloodType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -449,14 +373,6 @@ namespace BloodTypess.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BloodTypess.Core.Models.BloodType", b =>
-                {
-                    b.Navigation("BloodTypeStock")
-                        .IsRequired();
-
-                    b.Navigation("Donors");
                 });
 #pragma warning restore 612, 618
         }

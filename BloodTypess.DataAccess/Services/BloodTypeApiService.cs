@@ -31,10 +31,10 @@ namespace BloodTypess.DataAccess.Services
 		 
 		 
 
-		public Task<BloodTypeInfoDTO> GetBloodTypeInfoAsync(string bloodType)
+		public  Task<BloodTypeInfoDTO> GetBloodTypeInfoAsync(string bloodType)
 		{
 			var url = $"{_baseUrl}{BloodTypesMap.mp[bloodType]}";
-			var response = _httpClient.GetFromJsonAsync<BloodTypeInfoDTO>(url);
+			var response =  _httpClient.GetFromJsonAsync<BloodTypeInfoDTO>(url);
 			return response;
 
 		}

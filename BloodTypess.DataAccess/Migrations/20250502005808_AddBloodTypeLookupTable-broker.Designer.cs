@@ -4,6 +4,7 @@ using BloodTypess.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BloodTypess.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250502005808_AddBloodTypeLookupTable-broker")]
+    partial class AddBloodTypeLookupTablebroker
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,8 +203,8 @@ namespace BloodTypess.DataAccess.Migrations
                     b.Property<int>("BloodTypeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BloodTypeName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("BloodTypeId1")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -241,6 +244,8 @@ namespace BloodTypess.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BloodTypeId");
+
+                    b.HasIndex("BloodTypeId1");
 
                     b.ToTable("Donors");
                 });
@@ -392,10 +397,14 @@ namespace BloodTypess.DataAccess.Migrations
             modelBuilder.Entity("BloodTypess.Core.Models.Donor", b =>
                 {
                     b.HasOne("BloodTypess.Core.Models.BloodType", "bloodType")
-                        .WithMany("Donors")
+                        .WithMany()
                         .HasForeignKey("BloodTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("BloodTypess.Core.Models.BloodType", null)
+                        .WithMany("Donors")
+                        .HasForeignKey("BloodTypeId1");
 
                     b.Navigation("bloodType");
                 });

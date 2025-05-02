@@ -1,12 +1,27 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authorization
+@{
+    var firstName = User.Claims.FirstOrDefault(c => c.Type == "FirstName")?.Value;
+    var lastName = User.Claims.FirstOrDefault(c => c.Type == "LastName")?.Value;
+}
+
 @* 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div> *@
-<div class="fade-in-text">Welcome!<br> Know more about BloodTypes...</div>
+ 
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="welcomeAnimation" class="welcome-animation">
+        Welcome @firstName @lastName!
+    </div>
+}
 
 @section Styles{
     <style> 
@@ -27,9 +42,56 @@
             opacity: 0; /* Start invisible */
             animation: fadeIn 2s forwards;  
         }
+
+        .welcome-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white !important;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1001;
+        }
+     </style>}
+
+     @section Scripts{
         
 
+        <!-- JavaScript for welcome animation -->
+            @if (User.Identity.IsAuthenticated)
+            {
+              <script>
+              $(document).ready(function () {
+                 // Only show welcome animation on first login
+                 if (!sessionStorage.getItem('welcomeAnimation')) {
+                     const $welcomee = $('#welcomeAnimation');
+                     const welcomeeText = "Welcome, @firstName @lastName!";
+                     $welcomee.text('').show(); // Show the div & Clear initial text
+
+                     // Start animation
+                     let i = 0;
+                     function typeWriterr() {
+                         if (i < welcomeeText.length) {
+                             $welcomee.text($welcomee.text() + welcomeeText.charAt(i));
+                             i++;
+                             setTimeout(typeWriterr, 100); // Typing speed
+                         }
+                     }
+
+                     // Begin typing animation
+                     typeWriterr();
+
+                     // Set session storage to prevent replay
+                     sessionStorage.setItem('welcomeAnimation', 'true');
+                 }
+                  });
+              </script>
+           }
+
+     }
          
 
 
-    </style>}
+ 

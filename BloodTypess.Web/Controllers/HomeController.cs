@@ -15,7 +15,7 @@ namespace BloodTypess.Web.Controllers
         }
 		public IActionResult AccessDenied()
 		{
-			return View(); // show a "AccessDenied" page
+			return View(); // show an "AccessDenied" page
 		}
 
         [AllowAnonymous]
