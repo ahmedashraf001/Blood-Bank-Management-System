@@ -21,8 +21,8 @@ namespace BloodTypess.Web.Controllers
 		// GET: Donor
 		public async Task<IActionResult> Index()
 		{
-			var donors = await _donorService.GetAllDonorsAsync();
-			return View("~/Views/BloodTypeSystem/view_donors.cshtml", donors);
+			var donorsDTO = await _donorService.GetAllDonorsAsync();
+			return View("~/Views/BloodTypeSystem/view_donors.cshtml", donorsDTO);
 		}
 
 		// GET: Donor/Create

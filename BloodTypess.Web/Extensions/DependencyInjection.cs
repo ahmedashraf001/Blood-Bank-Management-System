@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Identity;
 using BloodTypess.Core.Models;
 using System;
 using BloodTypess.DataAccess.Repositories;
+using Hangfire;
+using Hangfire.SqlServer;
 
 namespace BloodTypess.Web.Extensions
 {
@@ -93,9 +95,21 @@ namespace BloodTypess.Web.Extensions
 					.Build();
 				options.Filters.Add(new AuthorizeFilter(policy));
 			});
-			
 
- 
+			// Configure Background job Hangfire
+ 			services.AddHangfire(config =>
+				 config.UseSqlServerStorage(configuration.GetConnectionString("DefaultConnection"),
+				 new SqlServerStorageOptions
+				 {
+					 CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+					 SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+					 QueuePollInterval = TimeSpan.Zero,
+					 UseRecommendedIsolationLevel = true,
+					 DisableGlobalLocks = true
+				 }));
+
+			services.AddHangfireServer();
+
 
 		}
 	}

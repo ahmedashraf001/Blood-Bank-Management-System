@@ -14,5 +14,8 @@ namespace BloodTypess.Business.Interfaces
 		Task<DonorDto> AddDonorAsync(DonorDto donorDto);
 		Task<DonorDto> UpdateDonorAsync(DonorDto donorDto);
 		Task DeleteDonorAsync(int id);
+
+		Task UpdateIsEiligibleToDonateAsync();
+		Task UpdateAgeAsync();
 	}
 }

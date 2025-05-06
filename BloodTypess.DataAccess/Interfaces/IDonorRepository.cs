@@ -14,5 +14,9 @@ namespace BloodTypess.DataAccess.Interfaces
 		Task<Donor> AddAsync(Donor donor);
 		Task<Donor> UpdateAsync(Donor donor);
 		Task DeleteAsync(int id);
+
+
+		Task UpdateAgeAsync();
+		Task UpdateIsEiligibleToDonateAsync();
 	}
 }

@@ -17,11 +17,13 @@ namespace BloodTypess.Core.Models
 		public DateTime DateOfBirth { get; set; }
 		public string Gender { get; set; }
  		public DateTime LastDonationDate { get; set; }
-		public bool IsEligibleToDonate { get; set; }
-		public string Address { get; set; }
-		public DateTime CreatedDate { get; set; }
-		public DateTime? UpdatedDate { get; set; }
+		public bool? IsEligibleToDonate { get; set; }
+		public string City { get; set; }
+ 
+		 public DateTime CreatedDate { get; set; }
+		 public DateTime? UpdatedDate { get; set; }
 		public string? BloodTypeName { get; set; } // For displaying purposes
+		public int Age { get; set; }
 
 		// Foreigen Key
 		public int BloodTypeId { get; set; }

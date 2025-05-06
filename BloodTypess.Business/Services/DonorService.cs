@@ -2,6 +2,7 @@
 using BloodTypess.Core.DTOs;
 using BloodTypess.Core.Models;
 using BloodTypess.DataAccess.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,10 +72,11 @@ namespace BloodTypess.Business.Services
 				BloodTypeId = donor.BloodTypeId,
 				LastDonationDate = donor.LastDonationDate,
 				IsEligibleToDonate = donor.IsEligibleToDonate,
-				Address = donor.Address,
+				City = donor.City,
 				CreatedDate = donor.CreatedDate,
 				UpdatedDate = donor.UpdatedDate,
-				BloodTypeName= donor.BloodTypeName
+				BloodTypeName= donor.BloodTypeName,
+				Age=donor.Age
 				
  			};
 		}
@@ -94,12 +96,21 @@ namespace BloodTypess.Business.Services
 				Gender = dto.Gender,
  				LastDonationDate = dto.LastDonationDate,
 				IsEligibleToDonate = dto.IsEligibleToDonate,
-				Address = dto.Address,
+				City = dto.City,
 				CreatedDate = dto.Id == 0 ? DateTime.Now : dto.CreatedDate,
 				UpdatedDate = dto.Id == 0 ? null : DateTime.Now,
 				BloodTypeId = dto.BloodTypeId,
 				BloodTypeName = bloodType?.Type
  			};
+		}
+
+		public async Task UpdateIsEiligibleToDonateAsync()
+		{
+			await _donorRepository.UpdateIsEiligibleToDonateAsync();
+		}
+		public async Task UpdateAgeAsync()
+		{
+			await _donorRepository.UpdateAgeAsync();
 		}
 	}
 }

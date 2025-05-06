@@ -193,14 +193,17 @@ namespace BloodTypess.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
 
                     b.Property<int>("BloodTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("BloodTypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -221,7 +224,7 @@ namespace BloodTypess.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsEligibleToDonate")
+                    b.Property<bool?>("IsEligibleToDonate")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("LastDonationDate")
