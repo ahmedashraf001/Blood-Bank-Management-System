@@ -12,6 +12,7 @@
     bool isAdmin = User.IsInRole("Admin");
     bool isEmployee = User.IsInRole("Employee");
     bool isAdminOrEmployee = isAdmin || isEmployee;
+    
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -262,6 +263,7 @@
     </style>
 </head>
 <body class="@(isAdminOrEmployee ? "sidebar-visible" : "")">
+   
 
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 custom">
@@ -286,6 +288,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="BabyPrediction" asp-action="PredictBabyBloodType" style="color:white !important; font-weight:bold;">BloodType Baby Predictor</a>
                         </li>
 
+                       
                         <!-- Donors Dropdown Menu -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="donorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white !important; font-weight:bold;">
@@ -293,10 +296,13 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="donorsDropdown">
                                 <li><a class="dropdown-item" asp-controller="Donor" asp-action="Index">View Donors</a></li>
+                                     @if(isAdminOrEmployee){
                                 <li><a class="dropdown-item" asp-controller="Donor" asp-action="Create">Add Donor</a></li>
+                                     }
                             </ul>
                         </li>
-
+                         
+                         @if(isAdminOrEmployee){
                         <!-- BloodType Stock Dropdown Menu -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="stockDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white !important; font-weight:bold;">
@@ -307,6 +313,7 @@
                                 <li><a class="dropdown-item" asp-controller="BloodTypeStock" asp-action="Create">Add Stock</a></li>
                             </ul>
                         </li>
+                         }
                     </ul>
 
                     <!-- Auth links moved to navbar -->

@@ -1,21 +1,32 @@
 ﻿@model IEnumerable<BloodTypess.Core.DTOs.DonorDto>
+@using BloodTypess.Core.Models
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 
 @{
     ViewData["Title"] = "Donors List";
+
+    // Check if current user is in the "User" role - using ViewBag from controller if available
+    bool isUserRole =  User.IsInRole("User");
 }
 
-
-
-
 <div class="container">
+    
+
     <div class="card">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h4 class="mb-0">
                 <i class="bi bi-people-fill me-2"></i>Donors Data
             </h4>
-            <a asp-action="Create" class="btn btn-success">
-                <i class="bi bi-person-plus"></i> Register New Donor
-            </a>
+            @if (!isUserRole)
+            {
+                <a asp-action="Create" class="btn btn-success">
+                    <i class="bi bi-person-plus"></i> Register New Donor
+                </a>
+            }
         </div>
         <div class="card-body">
             @if (!Model.Any())
@@ -36,7 +47,10 @@
                                 <th>Last Donation</th>
                                 <th>Status</th>
                                 <th>City</th>
-                                <th>Actions</th>
+                                @if (!isUserRole)
+                                {
+                                    <th class="actions-column">Actions</th>
+                                }
                             </tr>
                         </thead>
                         <tbody>
@@ -63,8 +77,8 @@
                                         @{
                                             var daysSinceLastDonation = (DateTime.Now - item.LastDonationDate).Days;
                                         }
-                                        
-                                            <small class="d-block text-muted">(@daysSinceLastDonation days ago)</small>
+
+                                        <small class="d-block text-muted">(@daysSinceLastDonation days ago)</small>
                                     </td>
                                     <td>
                                         @if (item.IsEligibleToDonate == true)
@@ -83,39 +97,43 @@
                                     <td>
                                         <span class="fw-semibold">@item.City</span>
                                     </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">
-                                                <i class="bi bi-pencil-square"></i> Edit
-                                            </a>
-                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-@item.Id">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button>
-                                        </div>
 
-                                        <!-- Delete Confirmation Modal -->
-                                        <div class="modal fade" id="deleteModal-@item.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@item.Id" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header bg-danger text-white">
-                                                        <h5 class="modal-title" id="deleteModalLabel-@item.Id">Confirm Delete</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete donor <strong>@item.FullName</strong> from the database?
-                                                        This action cannot be undone.
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                        <form asp-action="Delete" asp-route-id="@item.Id" method="post">
-                                                            @Html.AntiForgeryToken()
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </form>
+                                    @if (!isUserRole)
+                                    {
+                                        <td class="actions-column">
+                                            <div class="btn-group" role="group">
+                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">
+                                                    <i class="bi bi-pencil-square"></i> Edit
+                                                </a>
+                                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-@item.Id">
+                                                    <i class="bi bi-trash"></i> Delete
+                                                </button>
+                                            </div>
+
+                                            <!-- Delete Confirmation Modal -->
+                                            <div class="modal fade" id="deleteModal-@item.Id" tabindex="-1" aria-labelledby="deleteModalLabel-@item.Id" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-danger text-white">
+                                                            <h5 class="modal-title" id="deleteModalLabel-@item.Id">Confirm Delete</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete donor <strong>@item.FullName</strong> from the database?
+                                                            This action cannot be undone.
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                                                                @Html.AntiForgeryToken()
+                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    }
                                 </tr>
                             }
                         </tbody>
@@ -134,20 +152,21 @@
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
     </script>
+
     <script type="text/javascript" src="//cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
 
-
-    <script type="text/javascript"> 
- 
-    $(document).ready(function(){
-        $('#dataTable').dataTable();
-    });
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dataTable').dataTable();
+        });
     </script>
 }
+
 @section Styles {
     <style rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css"></style>
+
     <style>
+        /* CSS styles remain unchanged */
         .dt-layout-row {
             padding: 3px;
         }
@@ -250,77 +269,75 @@
                     border-color: #007bff;
                 }
 
-                /* Style the pagination container */
-                nav[aria-label="pagination"] {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    margin: 10px 0;
-                }
+        /* Style the pagination container */
+        nav[aria-label="pagination"] {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
 
-                /* Style each paging button */
-                .dt-paging-button {
-                    background-color: #fff;
-                    border: 1px solid #ccc;
-                    padding: 5px 10px;
-                    margin: 0 2px;
-                    cursor: pointer;
-                    font-size: 14px;
-                    color: #333;
-                    border-radius: 5px;
-                    transition: background-color 0.3s, border-color 0.3s;
-                }
+        /* Style each paging button */
+        .dt-paging-button {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            margin: 0 2px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
 
-                .dt-paging-button:hover:not(.disabled) {
-                    background-color: #007bff;
-                    border-color: #007bff;
-                    color: #fff;
-                }
+            .dt-paging-button:hover:not(.disabled) {
+                background-color: #007bff;
+                border-color: #007bff;
+                color: #fff;
+            }
 
-                /* Active or current page style */
-                .dt-paging-button.current {
-                    background-color: #007bff;
-                    border-color: #007bff;
-                    color: #fff;
-                    font-weight: bold;
-                }
+            /* Active or current page style */
+            .dt-paging-button.current {
+                background-color: #007bff;
+                border-color: #007bff;
+                color: #fff;
+                font-weight: bold;
+            }
 
-                /* Disabled buttons */
-                .dt-paging-button.disabled {
-                    background-color: #f5f5f5;
-                    border-color: #ddd;
-                    color: #aaa;
-                    cursor: not-allowed;
-                }
+            /* Disabled buttons */
+            .dt-paging-button.disabled {
+                background-color: #f5f5f5;
+                border-color: #ddd;
+                color: #aaa;
+                cursor: not-allowed;
+            }
 
-                .dt-paging-button[aria-disabled="true"] {
-                    cursor: not-allowed;
-                }
+            .dt-paging-button[aria-disabled="true"] {
+                cursor: not-allowed;
+            }
 
-                /* Style the ellipsis */
-                .ellipsis {
-                    display: inline-block;
-                    padding: 0 10px;
-                    color: #333;
-                    font-size: 14px;
-                }
+        /* Style the ellipsis */
+        .ellipsis {
+            display: inline-block;
+            padding: 0 10px;
+            color: #333;
+            font-size: 14px;
+        }
 
-                /* Add hover effect to previous and next buttons */
-                .dt-paging-button.previous:hover:not(.disabled),
-                .dt-paging-button.next:hover:not(.disabled) {
-                    background-color: #007bff;
-                    border-color: #007bff;
-                    color: #fff;
-                }
+        /* Add hover effect to previous and next buttons */
+        .dt-paging-button.previous:hover:not(.disabled),
+        .dt-paging-button.next:hover:not(.disabled) {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+        }
 
-                /* Add hover effect to first and last buttons */
-                .dt-paging-button.first:hover:not(.disabled),
-                .dt-paging-button.last:hover:not(.disabled) {
-                    background-color: #007bff;
-                    border-color: #007bff;
-                    color: #fff;
-                }
-
-
+        /* Add hover effect to first and last buttons */
+        .dt-paging-button.first:hover:not(.disabled),
+        .dt-paging-button.last:hover:not(.disabled) {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+        }
     </style>
 }

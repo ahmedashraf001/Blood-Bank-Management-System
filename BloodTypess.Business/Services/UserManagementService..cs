@@ -25,22 +25,32 @@ namespace BloodTypess.Business.Services
 		public async Task<List<UserListViewDto>> GetAllUsersAsync()
 		{
 			var users = await _userManager.Users.ToListAsync();
-			return users.Select(u => new UserListViewDto
+
+			var userDtos = new List<UserListViewDto>();
+
+			foreach (var user in users)
 			{
-				Id = u.Id,
-				Email = u.Email,
-				FirstName = u.FirstName,
-				LastName = u.LastName,
-				Role = (_userManager.GetRolesAsync(u).Result.FirstOrDefault() ?? u.Role)
-			}).ToList();
+				var roles = await _userManager.GetRolesAsync(user);
+				userDtos.Add(new UserListViewDto
+				{
+					Id = user.Id,
+					Email = user.Email,
+					FirstName = user.FirstName,
+					LastName = user.LastName,
+					Role = roles.FirstOrDefault()
+				});
+			}
+
+			return userDtos;
 		}
+
 
 		public async Task<UserDetailsViewDto> GetUserDetailsAsync(string id)
 		{
 			var user = await _userManager.FindByIdAsync(id);
 			if (user == null) return null;
 
-			var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault() ?? user.Role;
+			var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
 
 			return new UserDetailsViewDto
 			{
@@ -58,7 +68,7 @@ namespace BloodTypess.Business.Services
 			var user = await _userManager.FindByIdAsync(id);
 			if (user == null) return null;
 
-			var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault() ?? user.Role;
+			var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
 
 			return new UserEditViewDto
 			{
@@ -83,24 +93,38 @@ namespace BloodTypess.Business.Services
 			if (user.Email == "admin@blood.com")
 				return IdentityResult.Failed(new IdentityError { Description = "Cannot change primary admin account details." });
 
+			
+
 			user.Email = model.Email;
 			user.UserName = model.Email;
 			user.FirstName = model.FirstName;
 			user.LastName = model.LastName;
 			user.EmailConfirmed = model.EmailConfirmed;
-			user.Role = model.Role;
-
+ 
 			var result = await _userManager.UpdateAsync(user);
 			if (!result.Succeeded) return result;
 
-			var currentRoles = await _userManager.GetRolesAsync(user);
-			await _userManager.RemoveFromRolesAsync(user, currentRoles);
-			await _userManager.AddToRoleAsync(user, model.Role);
 
-			if (!string.IsNullOrEmpty(model.NewPassword))
+			var currentRoles = await _userManager.GetRolesAsync(user);
+			// if the role is not changed, no need to update the roles
+			if (!currentRoles.Contains(model.Role))
 			{
-				var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-				await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+				// Remove all existing roles
+				var removeResult = await _userManager.RemoveFromRolesAsync(user, currentRoles);
+				if (!removeResult.Succeeded)
+					return removeResult;
+				// Add the new role
+				var addResult = await _userManager.AddToRoleAsync(user, model.Role);
+				if (!addResult.Succeeded)
+					return addResult;
+
+				if (!string.IsNullOrEmpty(model.NewPassword))
+				{
+					var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+					var passwordResult = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+					if (!passwordResult.Succeeded)
+						return passwordResult;
+				}
 			}
 
 			return IdentityResult.Success;

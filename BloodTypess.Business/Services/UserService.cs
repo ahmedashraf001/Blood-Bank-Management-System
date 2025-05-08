@@ -66,7 +66,12 @@ namespace BloodTypess.Business.Services
 		public async Task<IdentityResult> RegisterAsync(AppUser user, string password)
 		{
 			
-			return await _userManager.CreateAsync(user, password);
+			var result = await _userManager.CreateAsync(user, password);
+			if (result.Succeeded)
+			{
+				await _userManager.AddToRoleAsync(user, "User");
+			}
+			return result;
 		}
 
 		public async Task LogoutAsync()

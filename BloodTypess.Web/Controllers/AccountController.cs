@@ -75,7 +75,6 @@ namespace BloodTypess.Web.Controllers
 
 				if (result.Succeeded)
 				{
-
 				  var LoginModel =  new LoginDto
 					{
 						Email = model.Email,
