@@ -1,8 +1,17 @@
-﻿@using Microsoft.AspNetCore.Authentication
+﻿@using BloodTypess.Core.Models
+@using Microsoft.AspNetCore.Authentication
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 @{
     var firstName = User.Claims.FirstOrDefault(c => c.Type == "FirstName")?.Value;
     var lastName = User.Claims.FirstOrDefault(c => c.Type == "LastName")?.Value;
+
+    // Check if user is in Admin or Employee role
+    bool isAdmin = User.IsInRole("Admin");
+    bool isEmployee = User.IsInRole("Employee");
+    bool isAdminOrEmployee = isAdmin || isEmployee;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +23,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BloodTypess.Web.styles.css" asp-append-version="true" />
+    <!-- Add Font Awesome for sidebar icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     @RenderSection("Styles", required: false)
     <style>
+        /* Existing Navbar Styles */
         .custom {
             background-color: #5B2638 !important;
             border-bottom: none !important;
@@ -28,6 +40,7 @@
 
         body {
             padding-top: 60px;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         .auth-links {
@@ -63,7 +76,7 @@
             padding: 12px 15px;
             line-height: 1.2;
         }
-        
+
         /* Dropdown styling */
         .dropdown-menu {
             background-color: #5B2638;
@@ -72,35 +85,149 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin-top: 0;
         }
-        
+
         .dropdown-item {
             color: white !important;
             font-weight: 500;
             padding: 8px 16px;
             transition: all 0.2s ease;
         }
-        
-        .dropdown-item:hover, .dropdown-item:focus {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white !important;
-        }
-        
+
+            .dropdown-item:hover, .dropdown-item:focus {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: white !important;
+            }
+
         .dropdown-toggle::after {
             vertical-align: middle;
         }
-        
+
         .dropdown:hover .dropdown-menu {
             display: block;
             animation: fadeIn 0.3s ease;
         }
-        
+
         @@keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        /* Make dropdown work better on mobile */
-        @@media (max-width: 576px) {
+
+        /* Sidebar Styles */
+        .wrapper {
+            display: flex;
+            width: 100%;
+        }
+
+        #sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background-color: #5B2638;
+            color: white;
+            transition: all 0.3s;
+            height: calc(100vh - 60px);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            z-index: 999;
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+            #sidebar.active {
+                margin-left: -250px;
+            }
+
+            #sidebar .sidebar-header {
+                padding: 20px;
+                background-color: #4a1d2d;
+            }
+
+            #sidebar ul.components {
+                padding: 20px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            #sidebar ul p {
+                color: white;
+                padding: 10px;
+                font-weight: bold;
+            }
+
+            #sidebar ul li a {
+                padding: 15px 20px;
+                font-size: 1.1em;
+                display: block;
+                color: white;
+                text-decoration: none;
+                transition: all 0.3s;
+                border-left: 3px solid transparent;
+            }
+
+                #sidebar ul li a:hover {
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border-left: 3px solid white;
+                }
+
+            #sidebar ul li.active > a {
+                background-color: #4a1d2d;
+                border-left: 3px solid white;
+            }
+
+            /* Icon styling */
+            #sidebar ul li a i {
+                margin-right: 10px;
+                width: 25px;
+                text-align: center;
+            }
+
+        /* Content area adjustment */
+        #content {
+            width: 100%;
+            transition: all 0.3s;
+            min-height: calc(100vh - 60px);
+            margin-left: 0;
+        }
+
+        body.sidebar-visible #content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        /* Toggle button */
+        #sidebarCollapse {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+
+        /* Make sidebar and content responsive */
+        @@media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+            }
+
+                #sidebar.active {
+                    margin-left: 0;
+                }
+
+            #content {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            body.sidebar-visible #content {
+                margin-left: 0;
+            }
+
             .dropdown-menu {
                 position: static;
                 float: none;
@@ -110,20 +237,41 @@
                 border: none;
                 box-shadow: none;
             }
-            
+
             .navbar-collapse {
                 background-color: #5B2638;
                 padding: 10px;
                 border-radius: 0 0 8px 8px;
             }
+
+            body.sidebar-visible {
+                overflow: hidden;
+            }
+
+                body.sidebar-visible:before {
+                    content: '';
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 998;
+                }
         }
     </style>
 </head>
-<body>
-  
+<body class="@(isAdminOrEmployee ? "sidebar-visible" : "")">
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 custom">
             <div class="container-fluid">
+                @if (isAdminOrEmployee)
+                {
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                }
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/images/logo.png" style="height: 40px; width: auto;" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -137,7 +285,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="BabyPrediction" asp-action="PredictBabyBloodType" style="color:white !important; font-weight:bold;">BloodType Baby Predictor</a>
                         </li>
-                        
+
                         <!-- Donors Dropdown Menu -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="donorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white !important; font-weight:bold;">
@@ -148,7 +296,7 @@
                                 <li><a class="dropdown-item" asp-controller="Donor" asp-action="Create">Add Donor</a></li>
                             </ul>
                         </li>
-                        
+
                         <!-- BloodType Stock Dropdown Menu -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="stockDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white !important; font-weight:bold;">
@@ -188,64 +336,138 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <div class="wrapper">
+        @if (isAdminOrEmployee)
+        {
+            <!-- Sidebar -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Admin Panel</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <p>MANAGEMENT</p>
+
+                    <!-- Reports Link - Accessible to Admin and Employee -->
+                    <li>
+                            <a  asp-controller="Reports" asp-action="Index">
+                                <i class="fas fa-chart-bar"></i> Reports
+                            </a>
+                     </li>
+                    
+
+                    <!-- Manage Users - Admin Only -->
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <a   asp-controller="UserManagement" asp-action="Index">
+                                <i class="fas fa-users"></i> Manage Users
+                            </a>
+                        </li>
+                    }
+
+                    <!-- Cache - Accessible to Admin Only -->
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <a  asp-controller="Cache" asp-action="Index">
+                                <i class="fas fa-database"></i> Cache
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+
+        <!-- Page Content -->
+        <div id="content">
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
     </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <!-- JavaScript for welcome txt -->
-    @if (User.Identity.IsAuthenticated)
-    {
-        <script>
-            $(document).ready(function () {
-                // Only show welcome animation on first login
-                if (!sessionStorage.getItem('welcomeShown')) {
-                    const $welcome = $('#permanentWelcome');
-                    const welcomeText = "Welcome, @firstName!";
-                    $welcome.text(''); // Clear initial text
+    <!-- JavaScript for sidebar and welcome animation -->
+    <script>
+        $(document).ready(function() {
+            // Sidebar toggle
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').toggleClass('active');
+                $('body').toggleClass('sidebar-visible');
+            });
 
-                    // Start animation
-                    let i = 0;
-                    function typeWriter() {
-                        if (i < welcomeText.length) {
-                            $welcome.text($welcome.text() + welcomeText.charAt(i));
-                            i++;
-                            setTimeout(typeWriter, 100); // Typing speed
-                        }
+            // Close sidebar when clicking outside on mobile
+            $(document).on('click touchstart', function(e) {
+                var container = $("#sidebar");
+                var button = $("#sidebarCollapse");
+
+                // If target of the click isn't the container or the button
+                if (!container.is(e.target) && container.has(e.target).length === 0 &&
+                    !button.is(e.target) && button.has(e.target).length === 0) {
+                    if (window.innerWidth <= 768 && $('#sidebar').hasClass('active')) {
+                        $('#sidebar').removeClass('active');
+                        $('body').removeClass('sidebar-visible');
                     }
-
-                    // Begin typing animation
-                    typeWriter();
-
-                    // Set session storage to prevent replay
-                    sessionStorage.setItem('welcomeShown', 'true');
                 }
             });
-            
-            // Enhance dropdown behavior on hover for desktop
-            $(document).ready(function() {
-                const $dropdown = $(".dropdown");
-                const $dropdownToggle = $(".dropdown-toggle");
-                const $dropdownMenu = $(".dropdown-menu");
-                
-                // Add hover functionality for desktop only
-                if (window.matchMedia("(min-width: 768px)").matches) {
-                    $dropdown.hover(
-                        function() {
-                            $(this).find($dropdownMenu).stop(true, true).fadeIn(300);
-                        },
-                        function() {
-                            $(this).find($dropdownMenu).stop(true, true).fadeOut(300);
-                        }
-                    );
+
+            // Highlight current page in sidebar
+            const currentUrl = window.location.pathname;
+            $('#sidebar ul li a').each(function() {
+                const href = $(this).attr('href');
+                if (href && currentUrl.includes(href) && href !== '#') {
+                    $(this).parent().addClass('active');
                 }
             });
-        </script>
-    }
+
+            // Welcome animation
+        @if (User.Identity.IsAuthenticated)
+        {
+            @:// Only show welcome animation on first login
+            @:if (!sessionStorage.getItem('welcomeShown')) {
+            @:const $welcome = $('#permanentWelcome');
+            @:const welcomeText = "Welcome, @firstName!";
+            @:$welcome.text(''); // Clear initial text
+
+            @:let currentText = '';
+            @:let i = 0;
+            @:function typeWriter() {
+            @:if (i < welcomeText.length) {
+            @:currentText += welcomeText.charAt(i);
+            @:$welcome.text(currentText);
+            @:i++;
+            @:setTimeout(typeWriter, 100); // Typing speed
+            @:}
+            @:}
+
+            @:// Begin typing animation
+            @:typeWriter();
+
+            @:// Set session storage to prevent replay
+            @:sessionStorage.setItem('welcomeShown', 'true');
+            @:}
+        }
+
+                    // Enhance dropdown behavior on hover for desktop
+                    if (window.matchMedia("(min-width: 768px)").matches) {
+                $(".dropdown").hover(
+                    function() {
+                        $(this).find(".dropdown-menu").stop(true, true).fadeIn(300);
+                    },
+                    function() {
+                        $(this).find(".dropdown-menu").stop(true, true).fadeOut(300);
+                    }
+                );
+            }
+        });
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

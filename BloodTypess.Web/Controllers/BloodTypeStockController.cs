@@ -1,7 +1,10 @@
 ﻿using BloodTypess.Business.Interfaces;
 using BloodTypess.Business.Services;
 using BloodTypess.Core.DTOs;
+using BloodTypess.DataAccess.DataContext;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BloodTypess.Web.Controllers
 {
@@ -9,15 +12,20 @@ namespace BloodTypess.Web.Controllers
 	{
 		private IBloodTypeStockService _bloodTypeStockService;
 		private IBloodTypeService _bloodTypeService;
+		private ApplicationDbContext _context;
 
 		public BloodTypeStockController(IBloodTypeStockService bloodTypeStockService,
-			IBloodTypeService bloodTypeService)
+			IBloodTypeService bloodTypeService,
+			ApplicationDbContext context)
 		{
 			_bloodTypeStockService = bloodTypeStockService;
 			_bloodTypeService = bloodTypeService;
+
+			_context = context;
 		}
 
 		// GET: BloodTypeStock
+		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> Index()
 		{
 			var bloodTypes = await _bloodTypeStockService.GetAllBloodTypesAsync();
@@ -25,6 +33,7 @@ namespace BloodTypess.Web.Controllers
 		}
 
 		// GET: BloodTypeStock/Create
+		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> Create()
 		{
 			var TheFixedBloodTypes = await _bloodTypeService.GetAllBloodTypesAsync();
@@ -35,10 +44,16 @@ namespace BloodTypess.Web.Controllers
 		// POST: BloodTypeStock/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Admin,Employee")]
+
 		public async Task<IActionResult> Create(BloodTypeStockDto bloodTypeStockDto)
 		{
+			bloodTypeStockDto.Type = await _context.BloodTypes
+							.Where(b => b.Id == bloodTypeStockDto.BloodTypeId)
+							.Select(b => b.Type)
+							.FirstOrDefaultAsync();
 			// Check if the blood type already exists
-			if(!_bloodTypeStockService.IsBloodTypeExist(bloodTypeStockDto))
+			if (_bloodTypeStockService.IsBloodTypeExist(bloodTypeStockDto))
 			{
 				ModelState.AddModelError("BloodTypeId", "This blood type already exists in the stock, edit the stock to Add the new Units ");
 			}
@@ -55,6 +70,7 @@ namespace BloodTypess.Web.Controllers
 		}
 
 		// GET: BloodTypeStock/Edit/5
+		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> Edit(int id)
 		{
 			var bloodType = await _bloodTypeStockService.GetBloodTypeByIdAsync(id);
@@ -72,6 +88,7 @@ namespace BloodTypess.Web.Controllers
 		// POST: BloodTypeStock/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> Edit(int id, BloodTypeStockDto bloodTypeDto)
 		{
 			if (id != bloodTypeDto.Id)
@@ -95,6 +112,7 @@ namespace BloodTypess.Web.Controllers
 		// POST: BloodTypeStock/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> DeleteConfirmed(int id)
 		{
 			await _bloodTypeStockService.DeleteBloodTypeAsync(id);

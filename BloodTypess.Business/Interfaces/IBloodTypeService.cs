@@ -10,7 +10,7 @@ namespace BloodTypess.Business.Interfaces
 {
 	public interface IBloodTypeService 
 	{
-		public Task<BloodTypeInfoDTO> GetBloodTypeInfo(string bloodType);
+		public Task<BloodTypeInfoDTO> GetBloodTypeInfo(string bloodType , CancellationToken cancellationToken);
 
 		public bool IsValidBloodType(string bloodType);
 

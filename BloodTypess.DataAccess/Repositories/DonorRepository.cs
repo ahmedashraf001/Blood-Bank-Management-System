@@ -25,14 +25,14 @@ namespace BloodTypess.DataAccess.Repositories
 		public async Task<IEnumerable<Donor>> GetAllAsync()
 		{
 			return await _context.Donors
-				.Include(d => d.bloodType) // Eager load the related BloodType entity data(if we needed) 
-				.ToListAsync();
+				.AsNoTracking()
+ 				.ToListAsync();
 		}
 
 		public async Task<Donor> GetByIdAsync(int id)
 		{
 			return await _context.Donors
-				.Include(d => d.bloodType)
+				.AsNoTracking()
 				.FirstOrDefaultAsync(d => d.Id == id);
 		}
 

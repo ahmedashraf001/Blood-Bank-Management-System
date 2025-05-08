@@ -1,8 +1,53 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewData["Title"] = "Access Denied";
 }
-<h3>You do not have permission to access this page.</h3>
 
+<style>
+    .access-denied-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 80vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        padding: 20px;
+    }
+
+    .access-denied-container img {
+        max-width: 500px;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .access-denied-container h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+        color: #c0392b;
+    }
+
+    .access-denied-container p {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+    }
+
+    .back-link {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="access-denied-container">
+    <img src="~/images/Not_Authorized.jpg" alt="Not Authorized">
+    <h1>Access Denied</h1>
+    <p>You do not have permission to view this page. Maybe try logging in with the right credentials?</p>
+    <a href="~/" class="back-link">← Back to Home</a>
+</div>

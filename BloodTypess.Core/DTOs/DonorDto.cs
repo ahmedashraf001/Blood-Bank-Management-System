@@ -41,7 +41,7 @@ namespace BloodTypess.Core.DTOs
 		public string FullName => $"{FirstName} {LastName}";
 
  		public int Age { get; set; }
-		public bool? IsEligibleToDonate { get; set; }
+		public bool IsEligibleToDonate { get; set; }
 
 	}
 }

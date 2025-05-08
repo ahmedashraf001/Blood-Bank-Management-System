@@ -15,6 +15,8 @@ namespace BloodTypess.Business.Interfaces
 		Task<BloodTypeStockDto> UpdateBloodTypeAsync(BloodTypeStockDto bloodTypeDto);
 		Task DeleteBloodTypeAsync(int id);
 		public bool IsBloodTypeExist(BloodTypeStockDto model);
+		void PurgeBloodTypeStockCache();
+
 
 	}
 }

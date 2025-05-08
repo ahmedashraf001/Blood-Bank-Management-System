@@ -17,5 +17,6 @@ namespace BloodTypess.Business.Interfaces
 
 		Task UpdateIsEiligibleToDonateAsync();
 		Task UpdateAgeAsync();
+		Task PurgeDonorsCache();
 	}
 }

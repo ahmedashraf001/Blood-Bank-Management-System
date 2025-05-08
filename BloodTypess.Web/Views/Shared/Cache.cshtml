@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "Cache Management";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <h2>Cache Management</h2>
+
+    @if (TempData["CacheMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["CacheMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Purge Cache</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <form asp-action="PurgeCache" asp-controller="Cache" method="post">
+                                <input type="hidden" name="cacheType" value="all" />
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-1">All Caches</h5>
+                                        <p class="mb-1">Purge all caches in the system</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Purge All
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="list-group-item">
+                            <form asp-action="PurgeCache" asp-controller="Cache" method="post">
+                                <input type="hidden" name="cacheType" value="bloodTypeStock" />
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-1">Blood Type Stock Cache</h5>
+                                        <p class="mb-1">Clear blood type inventory cache</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="bi bi-trash"></i> Purge
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="list-group-item">
+                            <form asp-action="PurgeCache" asp-controller="Cache" method="post">
+                                <input type="hidden" name="cacheType" value="donors" />
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-1">Donors Cache</h5>
+                                        <p class="mb-1">Clear donor information cache</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="bi bi-trash"></i> Purge
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="list-group-item">
+                            <form asp-action="PurgeCache" asp-controller="Cache" method="post">
+                                <input type="hidden" name="cacheType" value="reports" />
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-1">Reports Cache</h5>
+                                        <p class="mb-1">Clear generated reports cache</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="bi bi-trash"></i> Purge
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">Cache Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                <strong>What is caching?</strong><br>
+                                Caching temporarily stores frequently accessed data in memory to reduce database load and improve application performance.
+                            </p>
+                            <p>
+                                <strong>When to purge cache?</strong>
+                                <ul>
+                                    <li>When data displayed appears outdated or Unexpected</li>
+                                     <li>During troubleshooting performance issues</li>
+                                </ul>
+                            </p>
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                Purging cache may temporarily slow down the application while data is reloaded.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto hide alerts after 5 seconds
+        $(document).ready(function () {
+            setTimeout(function () {
+                $(".alert").alert('close');
+            }, 10000);
+        });
+    </script>
+}

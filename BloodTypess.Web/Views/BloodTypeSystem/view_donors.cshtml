@@ -11,7 +11,7 @@
     <div class="card">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h4 class="mb-0">
-                <i class="bi bi-people-fill me-2"></i>Donors Database
+                <i class="bi bi-people-fill me-2"></i>Donors Data
             </h4>
             <a asp-action="Create" class="btn btn-success">
                 <i class="bi bi-person-plus"></i> Register New Donor
@@ -147,4 +147,180 @@
 }
 @section Styles {
     <style rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css"></style>
+    <style>
+        .dt-layout-row {
+            padding: 3px;
+        }
+
+        .dt-info, .dt-length, .dt-search {
+            font-weight: 600;
+        }
+
+        .dt-input {
+            margin-right: 10px;
+            margin-left: 5px;
+        }
+        /* Style the entries per page container */
+        .dt-length {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-family: Arial, sans-serif;
+        }
+
+            /* Style the select dropdown */
+            .dt-length select.dt-input {
+                padding: 8px 12px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-right: 10px;
+                outline: none;
+                cursor: pointer;
+                transition: border-color 0.3s;
+            }
+
+                /* Focus style for the select dropdown */
+                .dt-length select.dt-input:focus {
+                    border-color: #007bff;
+                    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+                }
+
+            /* Style the label */
+            .dt-length label {
+                font-size: 14px;
+                color: #333;
+            }
+
+            /* Style for the select dropdown when it's hovered */
+            .dt-length select.dt-input:hover {
+                border-color: #007bff;
+            }
+
+            /* Placeholder style for select (optional, if needed) */
+            .dt-length select.dt-input option {
+                color: #333;
+            }
+        /* Style the search container */
+        .dt-search {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-family: Arial, sans-serif;
+        }
+
+            /* Style the label */
+            .dt-search label {
+                font-size: 14px;
+                font-weight: bold;
+                margin-right: 10px;
+                color: #333;
+            }
+
+            /* Style the input field */
+            .dt-search .dt-input {
+                padding: 8px 12px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 250px;
+                outline: none;
+                transition: border-color 0.3s;
+                box-sizing: border-box; /* Ensures padding doesn't affect width */
+            }
+
+                /* Focus style for the input field */
+                .dt-search .dt-input:focus {
+                    border-color: #007bff;
+                    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+                }
+
+                /* Placeholder styling */
+                .dt-search .dt-input::placeholder {
+                    color: #aaa;
+                }
+
+                /* Style the input field when empty (optional) */
+                .dt-search .dt-input:invalid {
+                    border-color: #e74c3c;
+                }
+
+                /* Style for the input field when typing */
+                .dt-search .dt-input:not(:placeholder-shown) {
+                    border-color: #007bff;
+                }
+
+                /* Style the pagination container */
+                nav[aria-label="pagination"] {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 10px 0;
+                }
+
+                /* Style each paging button */
+                .dt-paging-button {
+                    background-color: #fff;
+                    border: 1px solid #ccc;
+                    padding: 5px 10px;
+                    margin: 0 2px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    color: #333;
+                    border-radius: 5px;
+                    transition: background-color 0.3s, border-color 0.3s;
+                }
+
+                .dt-paging-button:hover:not(.disabled) {
+                    background-color: #007bff;
+                    border-color: #007bff;
+                    color: #fff;
+                }
+
+                /* Active or current page style */
+                .dt-paging-button.current {
+                    background-color: #007bff;
+                    border-color: #007bff;
+                    color: #fff;
+                    font-weight: bold;
+                }
+
+                /* Disabled buttons */
+                .dt-paging-button.disabled {
+                    background-color: #f5f5f5;
+                    border-color: #ddd;
+                    color: #aaa;
+                    cursor: not-allowed;
+                }
+
+                .dt-paging-button[aria-disabled="true"] {
+                    cursor: not-allowed;
+                }
+
+                /* Style the ellipsis */
+                .ellipsis {
+                    display: inline-block;
+                    padding: 0 10px;
+                    color: #333;
+                    font-size: 14px;
+                }
+
+                /* Add hover effect to previous and next buttons */
+                .dt-paging-button.previous:hover:not(.disabled),
+                .dt-paging-button.next:hover:not(.disabled) {
+                    background-color: #007bff;
+                    border-color: #007bff;
+                    color: #fff;
+                }
+
+                /* Add hover effect to first and last buttons */
+                .dt-paging-button.first:hover:not(.disabled),
+                .dt-paging-button.last:hover:not(.disabled) {
+                    background-color: #007bff;
+                    border-color: #007bff;
+                    color: #fff;
+                }
+
+
+    </style>
 }

@@ -1,6 +1,8 @@
 using BloodTypess.Business.Interfaces;
 using BloodTypess.Web.Extensions;
 using Hangfire;
+using BloodTypess.Web.Seeders;
+using BloodTypess.Web.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,8 +28,18 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Register CustomMiddleWare (Compress Http responses)
+app.UseMiddleware<ZstdCompressionMiddleware>();
+
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+using (var scope = app.Services.CreateScope())
+{
+	var services = scope.ServiceProvider;
+	await RoleSeeder.CreateRolesAsync(services);
+}
 
 app.UseHangfireDashboard("/dashboard");
 

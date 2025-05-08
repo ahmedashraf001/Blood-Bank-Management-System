@@ -1,0 +1,114 @@
+﻿@model List<BloodTypess.Core.DTOs.ReportDtos.BloodTypeStockReportDto>
+@{
+    ViewData["Title"] = "Blood Stock Report";
+}
+
+<div class="container">
+    <h1 class="mb-4">Blood Stock Report</h1>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    Blood Inventory
+                </div>
+                <div class="card-body">
+                    <div style="height: 400px;">
+                        <canvas id="bloodStockChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    Stock Details
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Blood Type</th>
+                                    <th>Units</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var stock in Model.OrderBy(s => s.Type))
+                                {
+                                    string statusClass = stock.AvailableUnits < 5 ? "text-danger" :
+                                    (stock.AvailableUnits < 15 ? "text-warning" : "text-success");
+                                    <tr>
+                                        <td><span class="fw-bold">@stock.Type</span></td>
+                                        <td><span class="@statusClass fw-bold">@stock.AvailableUnits</span></td>
+                                        <td>@stock.LastUpdated.ToString("MM/dd/yyyy HH:mm")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Blood Stock Trends
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">
+                        This feature will display blood stock trends over time once historical data is available.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Colors for charts
+        const colors = [
+            '#dc3545', '#fd7e14', '#ffc107', '#20c997',
+            '#0dcaf0', '#0d6efd', '#6610f2', '#6f42c1'
+        ];
+
+        // Blood Stock Chart
+        const bloodStockData = {
+            labels: [@Html.Raw(string.Join(",", Model.Select(s => $"'{s.Type}'")))],
+            datasets: [{
+                label: 'Available Units',
+                data: [@string.Join(",", Model.Select(s => s.AvailableUnits))],
+                backgroundColor: colors,
+                borderColor: colors.map(c => c.replace('0.2', '1')),
+                borderWidth: 1
+            }]
+        };
+
+        const bloodStockChart = new Chart(
+            document.getElementById('bloodStockChart'),
+            {
+                type: 'bar',
+                data: bloodStockData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Blood Units by Type'
+                        }
+                    }
+                }
+            }
+        );
+    </script>
+}

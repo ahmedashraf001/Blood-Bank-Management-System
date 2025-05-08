@@ -20,7 +20,7 @@ namespace BloodTypess.DataAccess.Repositories
 		}
 		public async Task<IEnumerable<BloodType>> GetAllAsync()
 		{
-			return await _dbContext.BloodTypes.ToListAsync();
+			return await _dbContext.BloodTypes.AsNoTracking().ToListAsync();
 		}
 		public async Task<BloodType> GetByIdAsync(int id)
 		{

@@ -1,0 +1,117 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Zero Stock Blood Types";
+}
+
+<div class="container">
+    <h1 class="mb-4">Zero Stock Blood Types</h1>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    Critical Supply Alert
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <h4 class="alert-heading">Emergency Supply Situation!</h4>
+                            <p>The following blood types currently have zero units in stock:</p>
+
+                            <div class="d-flex flex-wrap mt-3 mb-3">
+                                @foreach (var type in Model)
+                                {
+                                    <span class="badge bg-danger p-3 m-2 fs-5">@type</span>
+                                }
+                            </div>
+
+                            <hr>
+                            <p class="mb-0">Immediate action is required to replenish these critical blood types.</p>
+                        </div>
+
+                        <div class="mt-4">
+                            <h5>Recommended Emergency Actions:</h5>
+                            <ol class="list-group list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Contact Eligible Donors</div>
+                                        Immediately reach out to all eligible donors with matching blood types
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Emergency Donation Drive</div>
+                                        Organize urgent donation drives targeting these specific blood types
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Partner Facility Requests</div>
+                                        Contact partner blood banks to request emergency supply transfers
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Public Appeal</div>
+                                        Issue public appeal for blood donations highlighting critical shortage
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Defer Non-Emergency Usage</div>
+                                        Temporarily defer non-emergency blood usage for these types
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Good News!</h4>
+                            <p>Currently, there are no blood types with zero stock.</p>
+                            <hr>
+                            <p class="mb-0">All blood types have at least some units available. Continue regular donation drives to maintain healthy inventory levels.</p>
+                        </div>
+
+                        <div class="text-center my-5">
+                            <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+                            <h3 class="mt-3">All Blood Types In Stock</h3>
+                            <p class="text-muted">Continue monitoring inventory levels to maintain adequate supplies.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Historical Zero Stock Occurrences
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">
+                        This feature will display historical data of zero stock occurrences once the data becomes available.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add Bootstrap Icons if not already included in your layout
+        if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+            const iconLink = document.createElement('link');
+            iconLink.rel = 'stylesheet';
+            iconLink.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css';
+            document.head.appendChild(iconLink);
+        }
+
+        // You could add additional scripts here for notifications or real-time updates
+    </script>
+}

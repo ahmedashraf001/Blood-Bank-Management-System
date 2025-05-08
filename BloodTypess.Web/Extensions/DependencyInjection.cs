@@ -34,14 +34,17 @@ namespace BloodTypess.Web.Extensions
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IBloodTypeStockService, BloodTypeStockService>();
 			services.AddScoped<IDonorService, DonorService>();
+			services.AddScoped<IUserManagementService, UserManagementService>();
+			services.AddScoped<IReportService, ReportService>();
 
 			//Register Repositories
 			services.AddScoped<IBloodTypeStockRepository, BloodTypeStockRepository>();
 			services.AddScoped<IDonorRepository, DonorRepository>();
 			services.AddScoped<IBloodTypeRepository, BloodTypeRepository>();
+			services.AddScoped<IReportRepository, ReportRepository>();
 
-
- 
+			//register memory cache
+			services.AddMemoryCache();
 
 
 			services.AddScoped<IBloodTypeApiService, BloodTypeApiService>();
@@ -79,13 +82,13 @@ namespace BloodTypess.Web.Extensions
 
 
 
-	 
+			 
 
 
 
 
 
-			
+
 			// Enforce authentication globally for all pages , controllers and actions
 			// use [AllowAnonymous] to allow specific controllers and actions (page) to be accessed without authentication
 			services.AddControllersWithViews(options =>

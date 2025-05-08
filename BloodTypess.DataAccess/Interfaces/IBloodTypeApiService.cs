@@ -9,6 +9,7 @@ namespace BloodTypess.DataAccess.Interfaces
 {
 	public interface IBloodTypeApiService
 	{
-		Task<BloodTypeInfoDTO> GetBloodTypeInfoAsync(string bloodType);
+		Task<BloodTypeInfoDTO> GetBloodTypeInfoAsync(string bloodType, CancellationToken cancellationToken);
  	}
 }
+ 

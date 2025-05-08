@@ -1,0 +1,145 @@
+﻿@model List<BloodTypess.Core.DTOs.ReportDtos.EligibleDonorsByTypeDto>
+@{
+    ViewData["Title"] = "Eligible Donors by Blood Type";
+}
+
+<div class="container">
+    <h1 class="mb-4">Eligible Donors by Blood Type</h1>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    Donor Distribution
+                </div>
+                <div class="card-body">
+                    <div style="height: 400px;">
+                        <canvas id="donorsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    Eligible Donors by Type
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Blood Type</th>
+                                    <th>Eligible Donors</th>
+                                    <th>Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int totalDonors = Model.Sum(d => d.count);
+                                }
+                                @foreach (var donor in Model.OrderByDescending(d => d.count))
+                                {
+                                    decimal percentage = totalDonors > 0 ? (decimal)donor.count / totalDonors * 100 : 0;
+                                    <tr>
+                                        <td><span class="fw-bold">@donor.BloodType</span></td>
+                                        <td>@donor.count</td>
+                                        <td>@percentage.ToString("0.##")%</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr class="table-active">
+                                    <td><strong>Total</strong></td>
+                                    <td><strong>@totalDonors</strong></td>
+                                    <td><strong>100%</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Donor Insights
+                </div>
+                <div class="card-body">
+                    @{
+                        var mostCommonType = Model.OrderByDescending(d => d.count).FirstOrDefault();
+                        var leastCommonType = Model.OrderBy(d => d.count).FirstOrDefault();
+                    }
+
+                    @if (mostCommonType != null && leastCommonType != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-info">
+                                    <h5>Most Common Blood Type</h5>
+                                    <p class="mb-0">
+                                        <strong>@mostCommonType.BloodType</strong> with <strong>@mostCommonType.count</strong> eligible donors
+                                     </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alert alert-warning">
+                                    <h5>Least Common Blood Type</h5>
+                                    <p class="mb-0">
+                                        <strong>@leastCommonType.BloodType</strong> with <strong>@leastCommonType.count</strong> eligible donors
+                                     </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Colors for charts
+        const colors = [
+            '#dc3545', '#fd7e14', '#ffc107', '#20c997',
+            '#0dcaf0', '#0d6efd', '#6610f2', '#6f42c1'
+        ];
+
+        // Donors Chart
+        const donorsData = {
+            labels: [@Html.Raw(string.Join(",", Model.Select(d => $"'{d.BloodType}'")))],
+            datasets: [{
+                label: 'Eligible Donors',
+                data: [@string.Join(",", Model.Select(d => d.count))],
+                backgroundColor: colors,
+                borderWidth: 1
+            }]
+        };
+
+        const donorsChart = new Chart(
+            document.getElementById('donorsChart'),
+            {
+                type: 'doughnut',
+                data: donorsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Eligible Donors by Blood Type'
+                        }
+                    }
+                }
+            }
+        );
+    </script>
+}

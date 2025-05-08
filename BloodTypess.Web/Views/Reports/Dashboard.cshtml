@@ -1,0 +1,311 @@
+﻿@model BloodTypess.Core.DTOs.ReportDtos.DashboardViewDto
+@{
+    ViewData["Title"] = "Blood Bank Dashboard";
+}
+
+@section Styles {
+    <style>
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+        
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            border-top-left-radius: 10px !important;
+            border-top-right-radius: 10px !important;
+            font-weight: 600;
+        }
+
+        .blood-type {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .blood-units {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .dashboard-title {
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dc3545;
+        }
+
+        .risk-high {
+            background-color: #f8d7da;
+        }
+
+        .risk-medium {
+            background-color: #fff3cd;
+        }
+
+        .risk-low {
+            background-color: #d1e7dd;
+        }
+
+        .zero-stock {
+            color: #fff;
+            background-color: #dc3545;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .chart-container {
+            height: 300px;
+        }
+
+        .last-updated {
+            font-size: 12px;
+            color: #6c757d;
+        }
+    </style>
+}
+
+<div class="container-fluid">
+    <h1 class="dashboard-title">Blood Bank Dashboard</h1>
+
+    <!-- Blood Stock Section -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Blood Stock Levels</span>
+                    <button class="btn btn-sm btn-outline-primary" id="refreshBloodStock">Refresh</button>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="bloodStockChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">Critical Blood Types</div>
+                <div class="card-body">
+                    <div class="alert alert-danger" role="alert">
+                        <h5 class="alert-heading">Zero Stock Blood Types</h5>
+                        @if (Model.ZeroStockTypes.Any())
+                        {
+                            @foreach (var type in Model.ZeroStockTypes)
+                            {
+                                <span class="zero-stock">@type</span>
+                            }
+                        }
+                        else
+                        {
+                            <p>No blood types with zero stock.</p>
+                        }
+                    </div>
+                    <h5>Risky Blood Types</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Units</th>
+                                    <th>Eligible Donors</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var risk in Model.RiskyBloodTypes.OrderBy(r => r.AvailableUnits).Take(5))
+                                {
+                                    string riskClass = risk.AvailableUnits < 5 ? "risk-high" :
+                                    (risk.AvailableUnits < 15 ? "risk-medium" : "risk-low");
+                                    <tr class="@riskClass">
+                                        <td>@risk.BloodType</td>
+                                        <td>@risk.AvailableUnits</td>
+                                        <td>@risk.EligibleDonors</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">Blood Stock Details</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Blood Type</th>
+                                    <th>Available Units</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var stock in Model.BloodStock.OrderBy(s => s.Type))
+                                {
+                                    <tr>
+                                        <td class="blood-type">@stock.Type</td>
+                                        <td class="blood-units">@stock.AvailableUnits</td>
+                                        <td class="last-updated">@stock.LastUpdated.ToString("MM/dd/yyyy HH:mm")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">Eligible Donors by Blood Type</div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="eligibleDonorsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">Donors by Age Group</div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="ageGroupsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Colors for charts
+        const colors = [
+            '#dc3545', '#fd7e14', '#ffc107', '#20c997',
+            '#0dcaf0', '#0d6efd', '#6610f2', '#6f42c1'
+        ];
+
+        // Blood Stock Chart
+        const bloodStockData = {
+            labels: [@Html.Raw(string.Join(",", Model.BloodStock.Select(s => $"'{s.Type}'")))],
+            datasets: [{
+                label: 'Available Units',
+                data: [@string.Join(",", Model.BloodStock.Select(s => s.AvailableUnits))],
+                backgroundColor: colors,
+                borderWidth: 1
+            }]
+        };
+
+        const bloodStockChart = new Chart(
+            document.getElementById('bloodStockChart'),
+            {
+                type: 'bar',
+                data: bloodStockData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Blood Units by Type'
+                        }
+                    }
+                }
+            }
+        );
+        
+        // Eligible Donors Chart
+        const eligibleDonorsData = {
+            labels: [@Html.Raw(string.Join(",", Model.EligibleDonors.Select(d => $"'{d.BloodType}'")))],
+            datasets: [{
+                label: 'Eligible Donors',
+                data: [@string.Join(",", Model.EligibleDonors.Select(d => d.count))],
+                backgroundColor: colors,
+                borderWidth: 1
+            }]
+        };
+
+        const eligibleDonorsChart = new Chart(
+            document.getElementById('eligibleDonorsChart'),
+            {
+                type: 'doughnut',
+                data: eligibleDonorsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Eligible Donors Distribution'
+                        }
+                    }
+                }
+            }
+        );
+
+        // Age Groups Chart
+        const ageGroupsData = {
+            labels: [@Html.Raw(string.Join(",", Model.AgeGroups.Select(a => $"'{a.AgeGroup}'")))],
+            datasets: [{
+                label: 'Number of Donors',
+                data: [@string.Join(",", Model.AgeGroups.Select(a => a.Count))],
+                backgroundColor: colors,
+                borderWidth: 1
+            }]
+        };
+
+        const ageGroupsChart = new Chart(
+            document.getElementById('ageGroupsChart'),
+            {
+                type: 'pie',
+                data: ageGroupsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Donors by Age Group'
+                        }
+                    }
+                }
+            }
+        );
+
+        // Refresh button functionality
+        document.getElementById('refreshBloodStock').addEventListener('click', function() {
+            fetch('/Reports/BloodStock')
+                .then(response => response.json())
+                .then(data => {
+                    bloodStockChart.data.labels = data.map(item => item.type);
+                    bloodStockChart.data.datasets[0].data = data.map(item => item.availableUnits);
+                    bloodStockChart.update();
+                    alert('Blood stock data refreshed!');
+                })
+                .catch(error => console.error('Error refreshing data:', error));
+        });
+    </script>
+}

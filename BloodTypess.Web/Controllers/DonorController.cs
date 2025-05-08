@@ -1,7 +1,9 @@
 ﻿using BloodTypess.Business.Interfaces;
 using BloodTypess.Business.Services;
 using BloodTypess.Core.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace BloodTypess.Web.Controllers
 {
@@ -18,14 +20,23 @@ namespace BloodTypess.Web.Controllers
 			_bloodTypeService = bloodTypeService;
 		}
 
+		 
+
 		// GET: Donor
+		[Authorize] // Anyone Logged in
 		public async Task<IActionResult> Index()
 		{
+			var sw = Stopwatch.StartNew();
+			var donors = await _donorService.GetAllDonorsAsync();
+			sw.Stop();
 			var donorsDTO = await _donorService.GetAllDonorsAsync();
+			Console.WriteLine($"await _donorService.GetAllDonorsAsync(); took {sw.ElapsedMilliseconds}ms");
 			return View("~/Views/BloodTypeSystem/view_donors.cshtml", donorsDTO);
 		}
 
+
 		// GET: Donor/Create
+		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> Create()
 		{
 			var TheFixedBloodTypes = await _bloodTypeService.GetAllBloodTypesAsync();
@@ -36,6 +47,8 @@ namespace BloodTypess.Web.Controllers
 		// POST: Donor/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+
+		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> Create(DonorDto donorDto)
 		{
 			if (ModelState.IsValid)
@@ -50,6 +63,7 @@ namespace BloodTypess.Web.Controllers
 		}
 
 		// GET: Donor/Edit/5
+		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> Edit(int id)
 		{
 			var donor = await _donorService.GetDonorByIdAsync(id);
@@ -65,6 +79,7 @@ namespace BloodTypess.Web.Controllers
 		// POST: Donor/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> Edit(int id, DonorDto donorDto)
 		{
 			if (id != donorDto.Id)
@@ -82,6 +97,7 @@ namespace BloodTypess.Web.Controllers
 			return View("~/Views/BloodTypeSystem/add_donor.cshtml", donorDto);
 		}
 
+		[Authorize(Roles = "Admin,Employee")]
 		// POST: Donor/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using BloodTypess.Business.Interfaces;
 using BloodTypess.DataAccess.Services;
+using System.Threading;
 
 namespace BloodTypess.Web.Controllers
 {
@@ -13,7 +14,7 @@ namespace BloodTypess.Web.Controllers
 			_service = service;
 		}
 		[HttpGet]
-		public async Task<IActionResult> BloodInfo( string BloodType)
+		public async Task<IActionResult> BloodInfo( string BloodType, CancellationToken cancellationToken)
 		{
 			if (string.IsNullOrEmpty(BloodType))
 			{
@@ -28,7 +29,7 @@ namespace BloodTypess.Web.Controllers
 				return View();
 			}
 			 
-			var BloodTypeInfo = await _service.GetBloodTypeInfo(BloodType);
+			var BloodTypeInfo = await _service.GetBloodTypeInfo(BloodType,cancellationToken);
 			return View(BloodTypeInfo);
 		}
 	}
