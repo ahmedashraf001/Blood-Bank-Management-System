@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BloodTypess.Core.ValidationAttributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,14 +19,10 @@ namespace BloodTypess.Core.DTOs.UserManagementDtos
 
 		// For password change (optional)
 
-		[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).+$",
-	     ErrorMessage = "Password must have at least one lowercase," +
-			" one uppercase, one digit, and one special character.")]
+ 
 		[DataType(DataType.Password)]
- 		public string NewPassword { get; set; }
-
-		[DataType(DataType.Password)]
-		[Compare("NewPassword", ErrorMessage = "Passwords do not match.")]
-		public string ConfirmPassword { get; set; }
+		[OptionalPasswordAttribute]
+ 		public string? NewPassword { get; set; }
+ 
 	}
 }

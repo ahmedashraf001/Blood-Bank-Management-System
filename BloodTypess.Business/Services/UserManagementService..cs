@@ -92,8 +92,7 @@ namespace BloodTypess.Business.Services
 			if (user == null) return IdentityResult.Failed(new IdentityError { Description = "User not found" });
 			if (user.Email == "admin@blood.com")
 				return IdentityResult.Failed(new IdentityError { Description = "Cannot change primary admin account details." });
-
-			
+ 
 
 			user.Email = model.Email;
 			user.UserName = model.Email;
@@ -117,6 +116,7 @@ namespace BloodTypess.Business.Services
 				var addResult = await _userManager.AddToRoleAsync(user, model.Role);
 				if (!addResult.Succeeded)
 					return addResult;
+			}
 
 				if (!string.IsNullOrEmpty(model.NewPassword))
 				{
@@ -125,7 +125,7 @@ namespace BloodTypess.Business.Services
 					if (!passwordResult.Succeeded)
 						return passwordResult;
 				}
-			}
+			
 
 			return IdentityResult.Success;
 		}
