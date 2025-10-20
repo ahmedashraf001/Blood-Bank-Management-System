@@ -48,16 +48,16 @@ namespace BloodTypess.Business.Services
 			return response;
 		}
 
-		public bool IsValidBloodType(string bloodType)
+		public   bool IsValidBloodType(string bloodType)
 		{
 
 			if(BloodTypesMap.mp.ContainsKey(bloodType))
 			{
-				return false;
+				return true;
 			}
 			else
 			{
-				return true;
+				return false;
 			}
 		}
 

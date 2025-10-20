@@ -1,0 +1,44 @@
+# Visual Studio
+.vs/
+
+# Build results
+bin/
+obj/
+out/
+Debug/
+Release/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Rider (JetBrains IDE)
+.idea/
+
+# Backup & temp files
+*.tmp
+*.bak
+*.old
+*.cache
+
+# Generated files
+Generated/
+GeneratedCode/
+
+# Publish output
+publish/

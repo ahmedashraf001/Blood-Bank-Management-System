@@ -49,7 +49,7 @@ namespace BloodTypess.Business.Services
 			return dtoList;
 		}
 
-		public async Task<BloodTypeStockDto> GetBloodTypeByIdAsync(int id)
+		public async Task<BloodTypeStockDto> GetBloodTypeStockByIdAsync(int id)
 		{
 			var bloodType = await _bloodTypeStockRepository.GetByIdAsync(id);
 			return bloodType != null ? MapToDto(bloodType) : null;
@@ -104,10 +104,10 @@ namespace BloodTypess.Business.Services
 			};
 		}
 
-		public bool IsBloodTypeExist(BloodTypeStockDto model)
+		public async Task<bool> IsBloodTypeExist(string type)
 		{
-
-			var BloodTypeStock = _bloodTypeStockRepository.GetAllAsync().Result.FirstOrDefault(x => x.Type == model.Type);
+			var allstock = await _bloodTypeStockRepository.GetAllAsync();
+			var BloodTypeStock = allstock.FirstOrDefault(x => x.Type == type);
 			if (BloodTypeStock == null)
 			{
 				return false;
@@ -121,6 +121,12 @@ namespace BloodTypess.Business.Services
 		public void PurgeBloodTypeStockCache()
 		{
 			_cache.Remove("BloodTypeStockCache");
+		}
+
+		public async Task<string> GetBloodTypeByIdAsync(int id)
+		{
+			var bloodtype = await _BloodTypeService.GetBloodTypeByIdAsync(id);
+			return bloodtype.Type;
 		}
 	}
 }

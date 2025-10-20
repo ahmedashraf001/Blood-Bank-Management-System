@@ -23,7 +23,7 @@ namespace BloodTypess.Web.Controllers
 			}
 
 			//validation for the input BloodType
-			if (_service.IsValidBloodType(BloodType))
+			if (! _service.IsValidBloodType(BloodType) )
 			{
 				ViewData["ErrorMessage"] = "Invalid blood type. Please enter a valid blood type (e.g., A+, O-).";
 				return View();

@@ -10,11 +10,12 @@ namespace BloodTypess.Business.Interfaces
 	public interface IBloodTypeStockService
 	{
 		Task<IEnumerable<BloodTypeStockDto>> GetAllBloodTypesAsync();
-		Task<BloodTypeStockDto> GetBloodTypeByIdAsync(int id);
+		Task<string> GetBloodTypeByIdAsync(int id);
+		Task<BloodTypeStockDto> GetBloodTypeStockByIdAsync(int id);
 		Task<BloodTypeStockDto> AddBloodTypeAsync(BloodTypeStockDto bloodTypeDto);
 		Task<BloodTypeStockDto> UpdateBloodTypeAsync(BloodTypeStockDto bloodTypeDto);
 		Task DeleteBloodTypeAsync(int id);
-		public bool IsBloodTypeExist(BloodTypeStockDto model);
+		public Task<bool> IsBloodTypeExist(string type);
 		void PurgeBloodTypeStockCache();
 
 

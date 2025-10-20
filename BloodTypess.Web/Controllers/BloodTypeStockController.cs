@@ -48,12 +48,10 @@ namespace BloodTypess.Web.Controllers
 
 		public async Task<IActionResult> Create(BloodTypeStockDto bloodTypeStockDto)
 		{
-			bloodTypeStockDto.Type = await _context.BloodTypes
-							.Where(b => b.Id == bloodTypeStockDto.BloodTypeId)
-							.Select(b => b.Type)
-							.FirstOrDefaultAsync();
+			var BloodTypeStockDto2 = await _bloodTypeStockService.GetBloodTypeStockByIdAsync(bloodTypeStockDto.BloodTypeId);
+			string type = await _bloodTypeStockService.GetBloodTypeByIdAsync(bloodTypeStockDto.BloodTypeId);
 			// Check if the blood type already exists
-			if (_bloodTypeStockService.IsBloodTypeExist(bloodTypeStockDto))
+			if (await _bloodTypeStockService.IsBloodTypeExist(type))
 			{
 				ModelState.AddModelError("BloodTypeId", "This blood type already exists in the stock, edit the stock to Add the new Units ");
 			}
@@ -73,7 +71,7 @@ namespace BloodTypess.Web.Controllers
 		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> Edit(int id)
 		{
-			var bloodType = await _bloodTypeStockService.GetBloodTypeByIdAsync(id);
+			var bloodType = await _bloodTypeStockService.GetBloodTypeStockByIdAsync(id);
 			if (bloodType == null)
 			{
 				return NotFound();

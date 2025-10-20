@@ -3,11 +3,11 @@ using BloodTypess.Web.Extensions;
 using Hangfire;
 using BloodTypess.Web.Seeders;
 using BloodTypess.Web.Middleware;
+using BloodTypess.Web.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+ 
 
 // register DI services
 builder.Services.RegisterServices(builder.Configuration);
@@ -41,7 +41,14 @@ using (var scope = app.Services.CreateScope())
 	await RoleSeeder.CreateRolesAsync(services);
 }
 
-app.UseHangfireDashboard("/dashboard");
+ // register Hanfire Dashboard and restrict access to it to admins only
+	
+ 	app.UseHangfireDashboard("/dashboard", new DashboardOptions
+	{
+		Authorization = new[] { new RoleBasedHangfireDashboardAuthorizationFilter() }
+	});
+
+
 
 BackgroundJob.Enqueue<IDonorService>(s => s.UpdateAgeAsync());
 RecurringJob.AddOrUpdate<IDonorService>(

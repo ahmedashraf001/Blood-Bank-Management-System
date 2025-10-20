@@ -12,8 +12,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using BloodTypess.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
- using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using BloodTypess.Core.Models;
 using System;
 using BloodTypess.DataAccess.Repositories;
@@ -49,8 +48,9 @@ namespace BloodTypess.Web.Extensions
 
 			services.AddScoped<IBloodTypeApiService, BloodTypeApiService>();
 
-			// Bind BloodTypeApiOptions to the "BloodTypeApi" section in appsettings.json
+			// Options pattern , Bind the configuration class to the "section" in appsettings.json
 			services.Configure<BloodTypeApiOptions>(configuration.GetSection("BloodTypeApi"));
+			services.Configure<AdminUserOptions>(configuration.GetSection("AdminUser"));
 
 
 

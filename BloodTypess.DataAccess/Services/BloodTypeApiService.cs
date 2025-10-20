@@ -33,9 +33,21 @@ namespace BloodTypess.DataAccess.Services
 
 		public  async Task<BloodTypeInfoDTO> GetBloodTypeInfoAsync(string bloodType , CancellationToken cancellationToken)
 		{
-			var url = $"{_baseUrl}{BloodTypesMap.mp[bloodType]}";
-			var response =  await _httpClient.GetFromJsonAsync<BloodTypeInfoDTO>(url , cancellationToken);
-			return response;
+			// make custom cancellation token ensures the call auto-cancels if it takes > 5 seconds.
+			using var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+			cts.CancelAfter(TimeSpan.FromSeconds(5));
+	
+
+		    // create HTTP request to the API endpoint with full control over the request and response.
+			var request = new HttpRequestMessage(HttpMethod.Get, $"{_baseUrl}{BloodTypesMap.mp[bloodType]}");
+			// HttpCompletionOption.ResponseHeadersRead: Return as soon as headers arrive, don’t buffer the entire body first.
+			var resp = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cts.Token);
+			// ensure the response is successful, otherwise throw an exception.
+			resp.EnsureSuccessStatusCode();
+            // Manually deserializes : more flexible (can use custom options, handle nulls, etc.).
+			var model = await resp.Content.ReadFromJsonAsync<BloodTypeInfoDTO>(cancellationToken: cts.Token);
+			// return with ?? Returns a default object if deserialization failed 
+			return model ?? new BloodTypeInfoDTO();  
 
 		}
 	}

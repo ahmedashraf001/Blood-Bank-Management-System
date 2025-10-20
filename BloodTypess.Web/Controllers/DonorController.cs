@@ -12,12 +12,17 @@ namespace BloodTypess.Web.Controllers
 		private readonly IDonorService _donorService;
 		private readonly IBloodTypeStockService _bloodTypeStockService;
 		private readonly IBloodTypeService _bloodTypeService;
+		private readonly ILogger<DonorController> _logger;
 
-		public DonorController(IDonorService donorService,IBloodTypeStockService bloodTypeStockService , IBloodTypeService bloodTypeService)
+		public DonorController(IDonorService donorService,
+			IBloodTypeStockService bloodTypeStockService ,
+			IBloodTypeService bloodTypeService,
+			ILogger<DonorController> logger)
 		{
 			_donorService = donorService;
 			_bloodTypeStockService = bloodTypeStockService;
 			_bloodTypeService = bloodTypeService;
+			_logger = logger;
 		}
 
 		 
@@ -27,11 +32,11 @@ namespace BloodTypess.Web.Controllers
 		public async Task<IActionResult> Index()
 		{
 			var sw = Stopwatch.StartNew();
-			var donors = await _donorService.GetAllDonorsAsync();
-			sw.Stop();
 			var donorsDTO = await _donorService.GetAllDonorsAsync();
-			Console.WriteLine($"await _donorService.GetAllDonorsAsync(); took {sw.ElapsedMilliseconds}ms");
-			return View("~/Views/BloodTypeSystem/view_donors.cshtml", donorsDTO);
+			sw.Stop();
+ 
+			 _logger.LogInformation("GetAllDonorsAsync took {ElapsedMs} ms", sw.ElapsedMilliseconds);
+ 			return View("~/Views/BloodTypeSystem/view_donors.cshtml", donorsDTO);
 		}
 
 

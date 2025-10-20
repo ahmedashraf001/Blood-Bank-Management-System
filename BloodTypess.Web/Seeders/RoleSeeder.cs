@@ -1,5 +1,7 @@
-﻿using BloodTypess.Core.Models;
+﻿using BloodTypess.Core.Configurations;
+using BloodTypess.Core.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 namespace BloodTypess.Web.Seeders
 {
@@ -9,6 +11,7 @@ namespace BloodTypess.Web.Seeders
 		{
 			var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 			var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
+			var adminOptions = serviceProvider.GetRequiredService<IOptions<AdminUserOptions>>().Value;
 
 			string[] roleNames = { "Admin", "Employee", "User" };
 
@@ -23,7 +26,7 @@ namespace BloodTypess.Web.Seeders
 			}
 
 			// Create an admin user if none exists
-			var adminEmail = "admin@blood.com";  
+			var adminEmail = adminOptions.Email;  
 			var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
 			if (adminUser == null)
@@ -33,11 +36,11 @@ namespace BloodTypess.Web.Seeders
 					UserName= adminEmail,
 					Email = adminEmail,
 					EmailConfirmed = true,
-					FirstName = "Admin",
-					LastName = "User"
- 				};
+					FirstName = adminOptions.FirstName,
+					LastName = adminOptions.LastName
+				};
 
-				var result = await userManager.CreateAsync(NewUser, "Admin@123");  
+				var result = await userManager.CreateAsync(NewUser, adminOptions.Password);  
 
 				if (result.Succeeded)
 				{
